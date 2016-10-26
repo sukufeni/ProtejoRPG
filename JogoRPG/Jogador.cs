@@ -20,7 +20,7 @@ namespace JogoRPG
 
         private static void executaRodada()
         {
-
+            //adadasdasdad
         }
     }
 }
