@@ -2,7 +2,7 @@
 
 namespace JogoRPG
 {
-    abstract class Personagem : IEmetodos
+    public abstract class Personagem : IEmetodos
     {
         internal int vida;
         protected int dano;

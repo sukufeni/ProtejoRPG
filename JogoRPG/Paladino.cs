@@ -2,7 +2,7 @@
 
 namespace JogoRPG
 {
-    class Paladino : Humano
+    public class Paladino : Humano
     {
         PocaoVida magiaVida;
         FlamaGelada flamaGelada;

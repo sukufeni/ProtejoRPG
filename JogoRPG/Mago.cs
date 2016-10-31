@@ -2,7 +2,7 @@
 
 namespace JogoRPG
 {
-    class Mago : Humano
+    public class Mago : Humano
     {
         PocaoVida pocaVida;
         Bio bio;

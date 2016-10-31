@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JogoRPG
 {
-    class Arma
+    public class Arma
     {
         protected int dano;
 

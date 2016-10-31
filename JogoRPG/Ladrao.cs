@@ -3,7 +3,7 @@
 
 namespace JogoRPG
 {
-    class Ladrao : Humano
+   public  class Ladrao : Humano
     {
 
         Intoxicação intoxicacao;

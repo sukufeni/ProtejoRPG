@@ -2,7 +2,7 @@
 
 namespace JogoRPG
 {
-    abstract class Inumano : Personagem
+    public abstract class Inumano : Personagem
     {
      
     }

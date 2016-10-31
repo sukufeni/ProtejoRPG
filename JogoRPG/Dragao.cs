@@ -2,7 +2,7 @@
 
 namespace JogoRPG
 {
-    class Dragao : Inumano
+    public class Dragao : Inumano
     {
         HalitoFogo halitoFogo;
         GarraLetal garraLetal;

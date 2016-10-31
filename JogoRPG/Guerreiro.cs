@@ -3,7 +3,7 @@
 
 namespace JogoRPG
 {
-    class Guerreiro : Humano
+   public class Guerreiro : Humano
     {
         Tempestade tempestade;
         EspadaBarroca espada;

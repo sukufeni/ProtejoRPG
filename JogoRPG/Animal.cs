@@ -2,7 +2,7 @@
 
 namespace JogoRPG
 {
-    class Animal : Inumano
+    public class Animal : Inumano
     {
         Bio bio;
         GarraLetal garraLetal;

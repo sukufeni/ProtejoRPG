@@ -1,6 +1,6 @@
 ﻿namespace JogoRPG
 {
-   abstract class Magia
+    public  abstract class Magia
     {
         protected int valorMagia;
         protected int gastoMana;

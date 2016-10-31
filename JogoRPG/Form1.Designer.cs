@@ -35,6 +35,8 @@
             this.imagemPersonagem = new System.Windows.Forms.PictureBox();
             this.btnFechar = new System.Windows.Forms.Button();
             this.lbAtributos = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnAtaque = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imagemPersonagem)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,6 +110,25 @@
             this.lbAtributos.TabIndex = 7;
             this.lbAtributos.Text = "label3";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnAtaque
+            // 
+            this.btnAtaque.Location = new System.Drawing.Point(238, 46);
+            this.btnAtaque.Name = "btnAtaque";
+            this.btnAtaque.Size = new System.Drawing.Size(75, 23);
+            this.btnAtaque.TabIndex = 9;
+            this.btnAtaque.Text = "Atacar";
+            this.btnAtaque.UseVisualStyleBackColor = true;
+            this.btnAtaque.Click += new System.EventHandler(this.btnAtaque_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -116,6 +137,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1089, 385);
+            this.Controls.Add(this.btnAtaque);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lbAtributos);
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.imagemPersonagem);
@@ -140,6 +163,8 @@
         private System.Windows.Forms.PictureBox imagemPersonagem;
         private System.Windows.Forms.Button btnFechar;
         private System.Windows.Forms.Label lbAtributos;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAtaque;
     }
 }
 

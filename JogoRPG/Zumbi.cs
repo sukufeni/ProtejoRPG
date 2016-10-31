@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace JogoRPG
 {
-    class Zumbi : Inumano
+    public class Zumbi : Inumano
     {
         Intoxicação intoxicacao;
         GarraLetal garraLetal;

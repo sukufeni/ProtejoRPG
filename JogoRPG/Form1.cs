@@ -8,7 +8,7 @@ namespace JogoRPG
     public partial class Form1 : Form
     {
         List<Jogador> jogadores = new List<Jogador>();
-        Animal animal;
+        /*Animal animal;
         Dragao dragao;
         Zumbi zumbi;
         Troll troll;
@@ -16,7 +16,7 @@ namespace JogoRPG
         Guerreiro guerreiro;
         Paladino paladino;
         Mago mago;
-        Image imagem;
+        Image imagem;*/
 
         public Form1()
         {
@@ -35,8 +35,6 @@ namespace JogoRPG
             Jogador[] array = new Jogador[2];
             jogadores.Add(Jogador1);
             jogadores.Add(jogador2);
-            jogadores[0].ataque(this.guerreiro.ToString());
-            MessageBox.Show("ataque normal:"+jogadores[0].vida);
         }
         private void btnFechar_Click(object sender, EventArgs e)
         {
@@ -45,7 +43,7 @@ namespace JogoRPG
 
         private void cbPersonagem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (cbPersonagem.SelectedItem.ToString())
+            /*switch (cbPersonagem.SelectedItem.ToString())
             {
                 case "Animal":
                     animal = new Animal();
@@ -90,8 +88,15 @@ namespace JogoRPG
             }
             imagemPersonagem.Image = imagem;
             imagemPersonagem.Width = imagem.Width;
-            imagemPersonagem.Height = imagem.Height;
+            imagemPersonagem.Height = imagem.Height;*/
 
+        }
+
+        private void btnAtaque_Click(object sender, EventArgs e)
+        {
+            jogadores[0].ataque(jogadores[0].animal, "magia", jogadores[1].animal);
+            //jogadores[0].ataque(jogadores[1].guerreiro,magia")
+            MessageBox.Show("ataque normal:" + jogadores[1].animal.vida);
         }
     }
 }

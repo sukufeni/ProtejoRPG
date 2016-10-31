@@ -8,14 +8,14 @@ namespace JogoRPG
     public class Jogador
     {
 
-        Animal animal;
-        Dragao dragao;
-        Zumbi zumbi;
-        Troll troll;
-        Ladrao ladrao;
-        Guerreiro guerreiro;
-        Paladino paladino;
-        Mago mago;
+        public Animal animal;
+        public Dragao dragao;
+        public Zumbi zumbi;
+        public Troll troll;
+        public Ladrao ladrao;
+        public Guerreiro guerreiro;
+        public Paladino paladino;
+        public Mago mago;
         List<Personagem> personagens;
         public int vida;
 
@@ -45,10 +45,12 @@ namespace JogoRPG
             personagens.Add(mago);
         }
 
-        public void ataque(string tipo)
+        public void ataque(Personagem atacante,string tipoMagia, Personagem personagemAtacado)
         {
-            this.animal.ataque(ref this.guerreiro.vida, "magia");
-            vida = this.guerreiro.vida;
+
+            atacante.ataque/*atacante*/(ref personagemAtacado.vida/*atacado*/, "magia");
+
+            //vida = this.guerreiro.vida;
         }
         private static void executaRodada()
         {
