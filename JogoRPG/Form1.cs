@@ -94,7 +94,7 @@ namespace JogoRPG
 
         private void btnAtaque_Click(object sender, EventArgs e)
         {
-            jogadores[0].ataque(jogadores[0].animal, "magia", jogadores[1].animal);
+            jogadores[0].ataque(jogadores[0].animal, "magia", jogadores[1].animal); // FALTA DEFESA E CURA DE TODOS OS PERSONAGENS
             //jogadores[0].ataque(jogadores[1].guerreiro,magia")
             MessageBox.Show("ataque normal:" + jogadores[1].animal.vida);
         }
