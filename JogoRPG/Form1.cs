@@ -1,5 +1,5 @@
-﻿using JogoRPG;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,6 +7,7 @@ namespace JogoRPG
 {
     public partial class Form1 : Form
     {
+        List<Jogador> jogadores = new List<Jogador>();
         Animal animal;
         Dragao dragao;
         Zumbi zumbi;
@@ -16,7 +17,6 @@ namespace JogoRPG
         Paladino paladino;
         Mago mago;
         Image imagem;
-
 
         public Form1()
         {
@@ -30,16 +30,13 @@ namespace JogoRPG
         }
         private void btnPersonagem_Click(object sender, EventArgs e) // chamar a classe jogador a qual ira tratar os tipos de personagens. 
         {
-            Type type = Type.GetType("JogoRPG."+cbPersonagem.SelectedItem.ToString());
-            if (type != null)
-                 Activator.CreateInstance(type,2);
-            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                type = asm.GetType("JogoRPG." + cbPersonagem.SelectedItem.ToString());
-                if (type != null)
-                     Activator.CreateInstance(type,2);
-            }
-
+            Jogador Jogador1 = new Jogador(1);
+            Jogador jogador2 = new Jogador(1);
+            Jogador[] array = new Jogador[2];
+            jogadores.Add(Jogador1);
+            jogadores.Add(jogador2);
+            jogadores[0].ataque(this.guerreiro.ToString());
+            MessageBox.Show("ataque normal:"+jogadores[0].vida);
         }
         private void btnFechar_Click(object sender, EventArgs e)
         {
@@ -51,7 +48,7 @@ namespace JogoRPG
             switch (cbPersonagem.SelectedItem.ToString())
             {
                 case "Animal":
-                    animal = new Animal(2);
+                    animal = new Animal();
                     imagem = Image.FromFile(animal.CaminhoImagem);
                     lbAtributos.Text = animal.atributosPersonagem();
                     break;
@@ -61,32 +58,32 @@ namespace JogoRPG
                     lbAtributos.Text = dragao.atributosPersonagem();
                     break;
                 case "Zumbi":
-                    zumbi = new Zumbi(2);
+                    zumbi = new Zumbi();
                     imagem = Image.FromFile(zumbi.CaminhoImagem);
                     lbAtributos.Text = zumbi.atributosPersonagem();
                     break;
                 case "Troll":
-                    troll = new Troll(2);
+                    troll = new Troll();
                     imagem = Image.FromFile(troll.CaminhoImagem);
                     lbAtributos.Text = troll.atributosPersonagem();
                     break;
                 case "Ladrao":
-                    ladrao = new Ladrao(2);
+                    ladrao = new Ladrao();
                     imagem = Image.FromFile(ladrao.CaminhoImagem);
                     lbAtributos.Text = ladrao.atributosPersonagem();
                     break;
                 case "Guerreiro":
-                    guerreiro = new Guerreiro(2);
+                    guerreiro = new Guerreiro();
                     imagem = Image.FromFile(guerreiro.CaminhoImagem);
                     lbAtributos.Text = guerreiro.atributosPersonagem();
                     break;
                 case "Paladino":
-                    paladino = new Paladino(2);
+                    paladino = new Paladino();
                     imagem = Image.FromFile(paladino.CaminhoImagem);
                     lbAtributos.Text = paladino.atributosPersonagem();
                     break;
                 case "Mago":
-                    mago = new Mago(2);
+                    mago = new Mago();
                     imagem = Image.FromFile(mago.CaminhoImagem);
                     lbAtributos.Text = mago.atributosPersonagem();
                     break;

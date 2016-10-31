@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace JogoRPG
 {
@@ -11,6 +8,7 @@ namespace JogoRPG
         Tempestade tempestade;
         EspadaBarroca espada;
         Porrete porrete;
+
         private void atributos()
         {
             vida = 4000;
@@ -31,7 +29,7 @@ namespace JogoRPG
             }
         }
 
-        public Guerreiro(int jogadores) : base(jogadores)
+        public Guerreiro()
         {
             atributos();
             constroiArmas();
@@ -49,7 +47,7 @@ namespace JogoRPG
             porrete= new Porrete();
         }
 
-        public override void ataque(int vidaAtacado, string tipoAtaque)
+        public  override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
             if (tipoAtaque == "magia") tempestade.executaMagia(ref vidaAtacado, ref this.mana);
             //else porrete.executaAtaque(ref vidaAtacado)||espada.executaAtaque(ref vidaAtacado);

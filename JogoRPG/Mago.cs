@@ -33,7 +33,7 @@ namespace JogoRPG
             }
         }
 
-        public Mago(int jogadores) : base(jogadores)
+        public Mago()
         {
             atributos();
             constroiArmas();
@@ -55,7 +55,7 @@ namespace JogoRPG
             cajado= new Cajado();
         }
 
-        public override void ataque(int vidaAtacado, string tipoAtaque)
+        public override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
             if (tipoAtaque == "magia") bio.executaMagia(ref vidaAtacado, ref this.mana);
             else sagrado.executaAtaque(ref vidaAtacado);

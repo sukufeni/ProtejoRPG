@@ -1,5 +1,4 @@
-﻿using JogoRPG;
-using System;
+﻿using System;
 
 namespace JogoRPG
 {
@@ -27,7 +26,7 @@ namespace JogoRPG
                 return caminhoImagem;
             }
         }
-        public Animal(int jogadores) : base(jogadores)
+        public Animal()
         {
             atributos();
             constroiArmas();
@@ -43,14 +42,11 @@ namespace JogoRPG
         {
             garraLetal = new GarraLetal();
         }
-
-        public override void ataque(int vidaAtacado,string tipoAtaque)
+        public override void ataque(ref int vidaAtacado,string tipoAtaque)
         {
-
             if (tipoAtaque == "magia") bio.executaMagia(ref vidaAtacado, ref this.mana);
             else garraLetal.executaAtaque(ref vidaAtacado);
         }
-
         public override void cura()
         {
             throw new NotImplementedException();

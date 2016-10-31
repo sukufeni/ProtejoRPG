@@ -33,7 +33,7 @@ namespace JogoRPG
             }
         }
 
-        public Ladrao(int jogadores) : base(jogadores)
+        public Ladrao()
         {
             atributos();
             constroiArmas();
@@ -53,7 +53,7 @@ namespace JogoRPG
             besta = new Besta();
             esfera = new EsferaAtaque();
         }
-        public override void ataque(int vidaAtacado, string tipoAtaque)
+        public override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
             if (tipoAtaque == "magia") intoxicacao.executaMagia(ref vidaAtacado, ref this.mana);
             else porrete.executaAtaque(ref vidaAtacado);

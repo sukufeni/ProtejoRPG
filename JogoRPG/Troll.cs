@@ -31,7 +31,7 @@ namespace JogoRPG
             }
         }
 
-        public Troll(int jogadores) : base(jogadores)
+        public Troll()
         {
             atributos();
             constroiArmas();
@@ -50,7 +50,7 @@ namespace JogoRPG
              cajado = new Cajado();
         }
 
-        public override void ataque(int vidaAtacado, string tipoAtaque)
+        public override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
 
             if (tipoAtaque == "magia") intoxicacao.executaMagia(ref vidaAtacado, ref this.mana);

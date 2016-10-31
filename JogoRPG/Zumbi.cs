@@ -23,9 +23,7 @@ namespace JogoRPG
             agilidade = 20;
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/zumbi.jpg";
         }
-
-
-
+        
         public string CaminhoImagem
         {
             get
@@ -34,7 +32,7 @@ namespace JogoRPG
             }
         }
 
-        public Zumbi(int jogadores) : base(jogadores)
+        public Zumbi()
         {
             atributos();
             constroiArmas();
@@ -53,7 +51,7 @@ namespace JogoRPG
             cajado = new Cajado();
         }
 
-        public override void ataque(int vidaAtacado, string tipoAtaque)
+        public override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
             if (tipoAtaque == "magia") intoxicacao.executaMagia(ref vidaAtacado, ref this.mana);
             else porrete.executaAtaque(ref vidaAtacado);

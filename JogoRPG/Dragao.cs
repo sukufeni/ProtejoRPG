@@ -26,7 +26,7 @@ namespace JogoRPG
             }
         }
 
-        public Dragao(int jogadores) : base(jogadores)
+        public Dragao(int jogadores)
         {
             atributos();
             constroiArmas();
@@ -43,7 +43,7 @@ namespace JogoRPG
         {
             garraLetal = new GarraLetal();
         }
-        public override void ataque(int vidaAtacado, string tipoAtaque)
+        public override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
             if (tipoAtaque == "magia") halitoFogo.executaMagia(ref vidaAtacado, ref this.mana);
             else garraLetal.executaAtaque(ref vidaAtacado);

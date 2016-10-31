@@ -30,7 +30,7 @@ namespace JogoRPG
             }
         }
 
-        public Paladino(int jogadores) : base(jogadores)
+        public Paladino()
         {
             atributos();
 
@@ -51,7 +51,7 @@ namespace JogoRPG
             tridenteSagrado = new TridenteSagrado();
             besta = new Besta();
         }
-        public override void ataque(int vidaAtacado, string tipoAtaque)
+        public override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
 
             if (tipoAtaque == "magia") flamaGelada.executaMagia(ref vidaAtacado, ref this.mana);

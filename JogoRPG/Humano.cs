@@ -8,10 +8,5 @@ namespace JogoRPG
 {
     abstract class Humano : Personagem
     {
-        public Humano(int jogadores) : base(jogadores)
-        {
-
-
-        }
     }
 }
