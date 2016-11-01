@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace JogoRPG
 {
@@ -44,13 +43,9 @@ namespace JogoRPG
             personagens.Add(paladino);
             personagens.Add(mago);
         }
-
         public void ataque(Personagem atacante,string tipoMagia, Personagem personagemAtacado)
         {
-
-            atacante.ataque/*atacante*/(ref personagemAtacado.vida/*atacado*/, "magia");
-
-            //vida = this.guerreiro.vida;
+            atacante.ataque(ref personagemAtacado.vida, tipoMagia);
         }
         private static void executaRodada()
         {

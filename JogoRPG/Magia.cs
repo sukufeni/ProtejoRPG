@@ -4,9 +4,9 @@
     {
         protected int valorMagia;
         protected int gastoMana;
-        public virtual void executaMagia(ref int vida,ref int mana)
+        public virtual void executaMagia(ref int vida,ref int mana,int forcaMagica)
         {
-            vida += valorMagia;
+            vida += valorMagia * forcaMagica / 100;
             mana -= gastoMana;
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace JogoRPG
 {
    public class Guerreiro : Humano
@@ -49,8 +48,15 @@ namespace JogoRPG
 
         public  override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
-            if (tipoAtaque == "magia") tempestade.executaMagia(ref vidaAtacado, ref this.mana);
-            //else porrete.executaAtaque(ref vidaAtacado)||espada.executaAtaque(ref vidaAtacado);
+            switch (tipoAtaque)
+            {
+                case "tempestade": tempestade.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                    break;
+                case "espada barroca": espada.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                    break;
+                case "porete": porrete.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                    break;
+            }
         }
 
         public override void cura()

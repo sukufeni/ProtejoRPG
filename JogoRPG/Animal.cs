@@ -44,8 +44,8 @@ namespace JogoRPG
         }
         public override void ataque(ref int vidaAtacado,string tipoAtaque)
         {
-            if (tipoAtaque == "magia") bio.executaMagia(ref vidaAtacado, ref this.mana);
-            else garraLetal.executaAtaque(ref vidaAtacado);
+            if (tipoAtaque == "bio") bio.executaMagia(ref vidaAtacado, ref this.mana,this.forcaMagica);
+            else garraLetal.executaAtaque(ref vidaAtacado,this.forcaFisica);
         }
         public override void cura()
         {

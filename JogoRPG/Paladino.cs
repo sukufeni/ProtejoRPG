@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace JogoRPG
 {
     public class Paladino : Humano
@@ -53,14 +52,23 @@ namespace JogoRPG
         }
         public override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
+            switch (tipoAtaque)
+            {
+                case "flama gelada": flamaGelada.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                    break;
+                case "tempestade":tempestade.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                    break;
+                case "tridente sagrado": tridenteSagrado.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                    break;
+                case "besta":besta.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                    break;
+            }
 
-            if (tipoAtaque == "magia") flamaGelada.executaMagia(ref vidaAtacado, ref this.mana);
-            else besta.executaAtaque(ref vidaAtacado);
         }
 
         public override void cura()
         {
-            magiaVida.executaMagia(ref this.vida, ref this.mana);
+            magiaVida.executaMagia(ref this.vida, ref this.mana,this.forcaMagica);
         }
     }
 }

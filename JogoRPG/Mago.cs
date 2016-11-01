@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace JogoRPG
 {
@@ -12,6 +12,7 @@ namespace JogoRPG
         Tempestade tempestade;
         TridenteSagrado sagrado;
         Cajado cajado;
+        List<Magia> magiaCura;
         private void atributos()
         {
             vida = 2500;
@@ -57,13 +58,32 @@ namespace JogoRPG
 
         public override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
-            if (tipoAtaque == "magia") bio.executaMagia(ref vidaAtacado, ref this.mana);
-            else sagrado.executaAtaque(ref vidaAtacado);
+
+            switch (tipoAtaque)
+            {
+                case "bio":bio.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                    break;
+               case "flama gelada":gelada.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                    break;
+               case "intoxicação":intoxicacao.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                    break;
+               case "tempestade ":tempestade.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                    break;
+               case "tridente sagrado":sagrado.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                    break;
+               case "cajado":  cajado.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                    break;
+            }
         }
 
         public override void cura()
         {
-            throw new NotImplementedException();
+            
+            magiaCura.Add(pocaVida);
+            magiaCura.Add(magiacura);
+            magiaCura.Sort();
+            Magia atual = magiaCura[0];
+            atual.executaMagia(ref this.vida, ref this.mana, this.forcaMagica);
         }
     }
 }

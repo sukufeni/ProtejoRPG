@@ -6,7 +6,7 @@ namespace JogoRPG
     {
         internal int vida;
         protected int dano;
-        protected int mana;
+        internal int mana;
         protected int forcaFisica;
         protected int forcaMagica;
         protected int resistArmadura;

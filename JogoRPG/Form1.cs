@@ -8,15 +8,7 @@ namespace JogoRPG
     public partial class Form1 : Form
     {
         List<Jogador> jogadores = new List<Jogador>();
-        /*Animal animal;
-        Dragao dragao;
-        Zumbi zumbi;
-        Troll troll;
-        Ladrao ladrao;
-        Guerreiro guerreiro;
-        Paladino paladino;
-        Mago mago;
-        Image imagem;*/
+        Image imagem;
 
         public Form1()
         {
@@ -41,62 +33,27 @@ namespace JogoRPG
             Application.Exit();
         }
 
-        private void cbPersonagem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /*switch (cbPersonagem.SelectedItem.ToString())
-            {
-                case "Animal":
-                    animal = new Animal();
-                    imagem = Image.FromFile(animal.CaminhoImagem);
-                    lbAtributos.Text = animal.atributosPersonagem();
-                    break;
-                case "Dragao":
-                    dragao = new Dragao(2);
-                    imagem = Image.FromFile(dragao.CaminhoImagem);
-                    lbAtributos.Text = dragao.atributosPersonagem();
-                    break;
-                case "Zumbi":
-                    zumbi = new Zumbi();
-                    imagem = Image.FromFile(zumbi.CaminhoImagem);
-                    lbAtributos.Text = zumbi.atributosPersonagem();
-                    break;
-                case "Troll":
-                    troll = new Troll();
-                    imagem = Image.FromFile(troll.CaminhoImagem);
-                    lbAtributos.Text = troll.atributosPersonagem();
-                    break;
-                case "Ladrao":
-                    ladrao = new Ladrao();
-                    imagem = Image.FromFile(ladrao.CaminhoImagem);
-                    lbAtributos.Text = ladrao.atributosPersonagem();
-                    break;
-                case "Guerreiro":
-                    guerreiro = new Guerreiro();
-                    imagem = Image.FromFile(guerreiro.CaminhoImagem);
-                    lbAtributos.Text = guerreiro.atributosPersonagem();
-                    break;
-                case "Paladino":
-                    paladino = new Paladino();
-                    imagem = Image.FromFile(paladino.CaminhoImagem);
-                    lbAtributos.Text = paladino.atributosPersonagem();
-                    break;
-                case "Mago":
-                    mago = new Mago();
-                    imagem = Image.FromFile(mago.CaminhoImagem);
-                    lbAtributos.Text = mago.atributosPersonagem();
-                    break;
-            }
-            imagemPersonagem.Image = imagem;
-            imagemPersonagem.Width = imagem.Width;
-            imagemPersonagem.Height = imagem.Height;*/
-
-        }
-
         private void btnAtaque_Click(object sender, EventArgs e)
         {
-            jogadores[0].ataque(jogadores[0].animal, "magia", jogadores[1].animal); // FALTA DEFESA E CURA DE TODOS OS PERSONAGENS
-            //jogadores[0].ataque(jogadores[1].guerreiro,magia")
-            MessageBox.Show("ataque normal:" + jogadores[1].animal.vida);
+            jogadores[0].ataque(jogadores[0].animal, "bio", jogadores[1].animal); // FALTA DEFESA DE TODOS OS PERSONAGENS
+            imagemAtacante(jogadores[0].animal.CaminhoImagem,jogadores[0].animal.atributosPersonagem());
+            imagemAtacado(jogadores[1].animal.CaminhoImagem, jogadores[1].animal.atributosPersonagem());
+        }
+
+        private void imagemAtacado(string caminho, string v)
+        {
+            imagem = Image.FromFile(caminho);
+            imagemPersonagem2.Image = imagem;
+            imagemPersonagem2.Width = imagem.Width;
+            imagemPersonagem2.Height = imagem.Height;
+        }
+
+        private void imagemAtacante(string caminho,string atributosPersonagem)
+        {
+            imagem = Image.FromFile(caminho);
+            imagemPersonagem1.Image = imagem;
+            imagemPersonagem1.Width = imagem.Width;
+            imagemPersonagem1.Height = imagem.Height;
         }
     }
 }

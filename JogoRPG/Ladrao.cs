@@ -1,11 +1,9 @@
 ﻿using System;
 
-
 namespace JogoRPG
 {
    public  class Ladrao : Humano
     {
-
         Intoxicação intoxicacao;
         Tempestade tempestade;
         EsferaAtaque esfera;
@@ -55,8 +53,21 @@ namespace JogoRPG
         }
         public override void ataque(ref int vidaAtacado, string tipoAtaque)
         {
-            if (tipoAtaque == "magia") intoxicacao.executaMagia(ref vidaAtacado, ref this.mana);
-            else porrete.executaAtaque(ref vidaAtacado);
+            switch (tipoAtaque)
+            {
+                case "intoxicação": intoxicacao.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                    break;
+                case "tempestade": tempestade.executaMagia(ref vidaAtacado, ref this.mana,this.forcaMagica);
+                    break;
+                case "porrete": porrete.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                    break;
+                case "cajado": cajado.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                    break;
+                case "besta": besta.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                    break;
+                case "esfera": esfera.executaAtaque(ref vidaAtacado,this.forcaFisica);
+                    break;
+            }
         }
 
         public override void cura()
