@@ -7,7 +7,7 @@
         public virtual int executaMagia(ref int mana,int forcaMagica)
         {
             mana -= gastoMana;
-            return valorMagia * forcaMagica / 100;
+            return valorMagia * forcaMagica / 40;
         }
     }
 }

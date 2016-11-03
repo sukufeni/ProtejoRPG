@@ -7,7 +7,19 @@ namespace JogoRPG
     {
         Bio bio;
         GarraLetal garraLetal;
-        
+        private static Animal instance;
+
+        public static Animal Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Animal();
+                }
+                return instance;
+            }
+        }
 
         private void atributos()
         {
@@ -54,6 +66,7 @@ namespace JogoRPG
             if (tipoAtaque == "bio") personagemdefesa.defesa(bio.executaMagia(ref this.mana, this.forcaMagica), personagemdefesa);
             else personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica),personagemdefesa);
         }
+
         public override void cura()
         {
             throw new NotImplementedException();

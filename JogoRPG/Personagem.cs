@@ -21,16 +21,15 @@ namespace JogoRPG
         internal List<int> defesas;
         protected List<Magia> Curas;
 
-
         public virtual string atributosPersonagem()
         {
             return "vida:" + vida + " - " + "mana: " + mana + "\n" + "força-fisica: " + forcaFisica + " - " + "força-magica: " + forcaMagica + "\n" + "resistencia-armadura: " + resistArmadura + " - " + "resistencia-magica: " + resistMagica;
         }
         public abstract void constroiMagia();
         public abstract void constroiArmas();// mudar para inicializar a arma mais fraca
-        public abstract void ataque(string tipoAtaque, Personagem personagemDefesa); // switch para cada ataque utilizando os botoes
+        public abstract void ataque(string tipoAtaque, Personagem personagemDefesa);
 
-        public abstract void cura();// tipos de cura
+        public abstract void cura();
 
         Magia IEmetodos.constroiMagia()
         {
@@ -44,7 +43,7 @@ namespace JogoRPG
 
         public void rodada(bool magia, ref int mana)
         {
-            if (magia != false) mana += 10;  //limite maximo, receber a propria classe?
+            if (magia != false) mana += 10;
         }
 
         public virtual void defesa(int danoAtaque, Personagem personagemDefesa)

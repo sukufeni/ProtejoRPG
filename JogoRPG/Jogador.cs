@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace JogoRPG
 {
-    //new personagem passando o numero de jogadores
-    // a cada new personagem um vetor vai ser criado com todos os personagens, separados por jogador ex: 2 jogadores Personagem[]1 = new personagem
     public class Jogador
     {
-
         public Animal animal;
         public Dragao dragao;
         public Zumbi zumbi;
@@ -16,9 +12,10 @@ namespace JogoRPG
         public Guerreiro guerreiro;
         public Paladino paladino;
         public Mago mago;
-        List<Personagem> personagens;
+        public List<Personagem> personagens;
         public int vida;
-
+        public Personagem personagemAtacante;
+        public Personagem personagemAtacado;
         public Jogador()
         {
             criaPersonagens();
@@ -44,17 +41,25 @@ namespace JogoRPG
             personagens.Add(paladino);
             personagens.Add(mago);
         }
-        public void ataque(Personagem jogador1, Personagem jogador2,string tipoMagia)
+
+        public void ataque(Personagem atacante, Personagem atacado, string tipoMagia)
         {
-           jogador1.ataque("bio", jogador2);  
+            atacante.ataque("bio", atacado);
+            
         }
         private static void executaRodada()
         {
             
         }
-        public string caminho(Personagem a)
+        public string caminhoatacante(out string atributos,Personagem atacante)
         {
-            return a.caminhoImagem;
+            atributos = atacante.atributosPersonagem();
+            return atacante.caminhoImagem;
+        }
+        public string caminhoatacado(out string atributos, Personagem atacado)
+        {
+            atributos = atacado.atributosPersonagem();
+            return atacado.caminhoImagem;
         }
     }
 }

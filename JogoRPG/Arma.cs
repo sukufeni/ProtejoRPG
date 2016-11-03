@@ -11,7 +11,7 @@ namespace JogoRPG
         }*/
         public int executaAtaque(int forcaFisica)
         {
-            return this.dano * forcaFisica / 100;
+            return this.dano * forcaFisica / 40;
         }
     }
 }
