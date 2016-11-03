@@ -10,7 +10,7 @@ namespace JogoRPG
     {
         public Tempestade()
         {
-            this.valorMagia = -200;
+            this.valorMagia = 200;
             this.gastoMana = 12;
         }
 

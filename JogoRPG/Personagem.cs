@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace JogoRPG
 {
@@ -15,8 +16,10 @@ namespace JogoRPG
         protected int fraqueza;
         protected Magia magia;
         protected Arma arma;
-        protected string caminhoImagem;
-        protected bool ataqueEspecial;
+        internal string caminhoImagem;
+        protected bool ataqueespecial;
+        internal List<int> defesas;
+        protected List<Magia> Curas;
 
 
         public virtual string atributosPersonagem()
@@ -25,7 +28,7 @@ namespace JogoRPG
         }
         public abstract void constroiMagia();
         public abstract void constroiArmas();// mudar para inicializar a arma mais fraca
-        public abstract void ataque(ref int vidaAtacado, string tipoAtaque); // switch para cada ataque utilizando os botoes
+        public abstract void ataque(string tipoAtaque, Personagem personagemDefesa); // switch para cada ataque utilizando os botoes
 
         public abstract void cura();// tipos de cura
 
@@ -44,11 +47,12 @@ namespace JogoRPG
             if (magia != false) mana += 10;  //limite maximo, receber a propria classe?
         }
 
-        void IEmetodos.ataqueEspecial(ref int vidaAtacado, string tipoAtaque)//configurar o ataque especial
+        public virtual void defesa(int danoAtaque, Personagem personagemDefesa)
         {
-            /* ira usar a variavel de rodada interna de cada classe,
-             * so habilitará o botao a cada 10 rodadas
-             */
+            personagemDefesa.defesas.Sort();
+            int defesa = defesas[0];
+            personagemDefesa.vida -= danoAtaque - defesa;
         }
+        public abstract int ataqueEspecial(ref int vidaAtacado, string tipoAtaque);
     }
 }

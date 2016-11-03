@@ -10,7 +10,7 @@ namespace JogoRPG
     {
         public Intoxicação()
         {
-            this.valorMagia = -280;
+            this.valorMagia = 280;
             this.gastoMana = 12;
         }
 

@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace JogoRPG
 {
     public class Paladino : Humano
@@ -17,6 +20,10 @@ namespace JogoRPG
             resistArmadura = 60;
             resistMagica = 60;
             agilidade = 60;
+            this.defesas = new List<int>();
+            this.defesas.Add(agilidade);
+            this.defesas.Add(resistMagica);
+            defesas.Add(resistArmadura);
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/paladin.jpg";
         }
 
@@ -50,17 +57,17 @@ namespace JogoRPG
             tridenteSagrado = new TridenteSagrado();
             besta = new Besta();
         }
-        public override void ataque(ref int vidaAtacado, string tipoAtaque)
+        public override void ataque(string tipoAtaque, Personagem personagemdefesa)
         {
             switch (tipoAtaque)
             {
-                case "flama gelada": flamaGelada.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                case "flama gelada":personagemdefesa.defesa(flamaGelada.executaMagia(ref this.mana, this.forcaMagica),personagemdefesa);
                     break;
-                case "tempestade":tempestade.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                case "tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.mana, this.forcaMagica),personagemdefesa);
                     break;
-                case "tridente sagrado": tridenteSagrado.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                case "tridente sagrado":personagemdefesa.defesa(tridenteSagrado.executaAtaque(this.forcaFisica),personagemdefesa);
                     break;
-                case "besta":besta.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                case "besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica),personagemdefesa);
                     break;
             }
 
@@ -68,7 +75,12 @@ namespace JogoRPG
 
         public override void cura()
         {
-            magiaVida.executaMagia(ref this.vida, ref this.mana,this.forcaMagica);
+            this.vida += magiaVida.executaMagia(ref this.mana,this.forcaMagica);
+        }
+
+        public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)
+        {
+            throw new NotImplementedException();
         }
     }
 }

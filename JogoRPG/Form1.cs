@@ -8,7 +8,12 @@ namespace JogoRPG
     public partial class Form1 : Form
     {
         List<Jogador> jogadores = new List<Jogador>();
+        Personagem instance1;
+        Personagem instance2;
+        Type type;
+        Type type2;
         Image imagem;
+        string a, b;
 
         public Form1()
         {
@@ -18,15 +23,15 @@ namespace JogoRPG
         private void Form1_Load(object sender, EventArgs e)
         {
             lbAtributos.Text = "";
-
-        }
-        private void btnPersonagem_Click(object sender, EventArgs e) // chamar a classe jogador a qual ira tratar os tipos de personagens. 
-        {
-            Jogador Jogador1 = new Jogador(1);
-            Jogador jogador2 = new Jogador(1);
-            Jogador[] array = new Jogador[2];
+            Jogador Jogador1 = new Jogador();
+            Jogador jogador2 = new Jogador();
             jogadores.Add(Jogador1);
             jogadores.Add(jogador2);
+
+        }
+        private void btnPersonagem_Click(object sender, EventArgs e)
+        {
+
         }
         private void btnFechar_Click(object sender, EventArgs e)
         {
@@ -35,9 +40,27 @@ namespace JogoRPG
 
         private void btnAtaque_Click(object sender, EventArgs e)
         {
-            jogadores[0].ataque(jogadores[0].animal, "bio", jogadores[1].animal); // FALTA DEFESA DE TODOS OS PERSONAGENS
-            imagemAtacante(jogadores[0].animal.CaminhoImagem,jogadores[0].animal.atributosPersonagem());
-            imagemAtacado(jogadores[1].animal.CaminhoImagem, jogadores[1].animal.atributosPersonagem());
+            do
+            {
+                try
+                {
+                    type = System.Type.GetType("JogoRPG." + cbJogador1.SelectedItem.ToString());
+                    instance1 = (Personagem)Activator.CreateInstance(type);
+                    type2 = System.Type.GetType("JogoRPG." + cbJogador2.SelectedItem.ToString());
+                    instance2 = (Personagem)Activator.CreateInstance(type2);
+                    jogadores[0].ataque(instance1, instance2, "bio");
+                    a = jogadores[0].caminho(instance1);
+                    b = jogadores[1].caminho(instance2);
+                    imagemAtacante(a, "");
+                    imagemAtacado(b, "");
+                }
+                catch (TypeInitializationException erro)
+                {
+                    throw erro;
+                }
+            } while (cbJogador1.SelectedItem.ToString() == "" || cbJogador2.SelectedItem.ToString() == "" /*|| tipoMagia == ""*/);
+            
+            
         }
 
         private void imagemAtacado(string caminho, string v)

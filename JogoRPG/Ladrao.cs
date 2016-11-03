@@ -51,26 +51,31 @@ namespace JogoRPG
             besta = new Besta();
             esfera = new EsferaAtaque();
         }
-        public override void ataque(ref int vidaAtacado, string tipoAtaque)
+        public override void ataque(string tipoAtaque, Personagem personagemdefesa)
         {
             switch (tipoAtaque)
             {
-                case "intoxicação": intoxicacao.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                case "intoxicação":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.mana, this.forcaMagica),personagemdefesa);
                     break;
-                case "tempestade": tempestade.executaMagia(ref vidaAtacado, ref this.mana,this.forcaMagica);
+                case "tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.mana,this.forcaMagica),personagemdefesa);
                     break;
-                case "porrete": porrete.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                case "porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica),personagemdefesa);
                     break;
-                case "cajado": cajado.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                case "cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica),personagemdefesa);
                     break;
-                case "besta": besta.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                case "besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica),personagemdefesa);
                     break;
-                case "esfera": esfera.executaAtaque(ref vidaAtacado,this.forcaFisica);
+                case "esfera":personagemdefesa.defesa(esfera.executaAtaque(this.forcaFisica),personagemdefesa);
                     break;
             }
         }
 
         public override void cura()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace JogoRPG
 {
@@ -18,7 +19,7 @@ namespace JogoRPG
         List<Personagem> personagens;
         public int vida;
 
-        public Jogador(int jogadores)
+        public Jogador()
         {
             criaPersonagens();
         }
@@ -26,7 +27,7 @@ namespace JogoRPG
         private void criaPersonagens()
         {
             this.animal = new Animal();
-            this.dragao = new Dragao(2);
+            this.dragao = new Dragao();
             this.zumbi = new Zumbi();
             this.troll = new Troll();
             this.ladrao = new Ladrao();
@@ -43,14 +44,17 @@ namespace JogoRPG
             personagens.Add(paladino);
             personagens.Add(mago);
         }
-        public void ataque(Personagem atacante,string tipoMagia, Personagem personagemAtacado)
+        public void ataque(Personagem jogador1, Personagem jogador2,string tipoMagia)
         {
-            atacante.ataque(ref personagemAtacado.vida, tipoMagia);
+           jogador1.ataque("bio", jogador2);  
         }
         private static void executaRodada()
         {
             
         }
-        
+        public string caminho(Personagem a)
+        {
+            return a.caminhoImagem;
+        }
     }
 }

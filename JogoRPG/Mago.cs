@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace JogoRPG
 {
@@ -12,7 +13,7 @@ namespace JogoRPG
         Tempestade tempestade;
         TridenteSagrado sagrado;
         Cajado cajado;
-        List<Magia> magiaCura;
+        
         private void atributos()
         {
             vida = 2500;
@@ -22,6 +23,11 @@ namespace JogoRPG
             resistArmadura = 30;
             resistMagica = 100;
             agilidade = 40;
+            this.defesas = new List<int>();
+            this.Curas = new List<Magia>();
+            this.defesas.Add(agilidade);
+            this.defesas.Add(resistMagica);
+            defesas.Add(resistArmadura);
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/mago.jpg";
         }
 
@@ -56,34 +62,41 @@ namespace JogoRPG
             cajado= new Cajado();
         }
 
-        public override void ataque(ref int vidaAtacado, string tipoAtaque)
+        public override void cura()
         {
+            Curas.Add(pocaVida);
+            Curas.Add(magiacura);
+            Curas.Sort();
+            Magia atual = Curas[0];
+            this.vida = atual.executaMagia(ref this.mana, this.forcaMagica);
+        }
 
+        public override void ataque(string tipoAtaque, Personagem personagemDefesa)
+        {
             switch (tipoAtaque)
             {
-                case "bio":bio.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                case "bio":
+                    personagemDefesa.defesa(bio.executaMagia(ref this.mana, this.forcaMagica),personagemDefesa);
                     break;
-               case "flama gelada":gelada.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                case "flama gelada":personagemDefesa.defesa(gelada.executaMagia(ref this.mana, this.forcaMagica),personagemDefesa);
                     break;
-               case "intoxicação":intoxicacao.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                case "intoxicação":
+                    personagemDefesa.defesa(intoxicacao.executaMagia(ref this.mana, this.forcaMagica),personagemDefesa);
                     break;
-               case "tempestade ":tempestade.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                case "tempestade ":personagemDefesa.defesa(tempestade.executaMagia(ref this.mana, this.forcaMagica),personagemDefesa);
                     break;
-               case "tridente sagrado":sagrado.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                case "tridente sagrado":
+                    personagemDefesa.defesa(sagrado.executaAtaque(this.forcaFisica),personagemDefesa);
                     break;
-               case "cajado":  cajado.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                case "cajado":
+                    personagemDefesa.defesa(cajado.executaAtaque(this.forcaFisica),personagemDefesa);
                     break;
             }
         }
 
-        public override void cura()
+        public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)
         {
-            
-            magiaCura.Add(pocaVida);
-            magiaCura.Add(magiacura);
-            magiaCura.Sort();
-            Magia atual = magiaCura[0];
-            atual.executaMagia(ref this.vida, ref this.mana, this.forcaMagica);
+            throw new NotImplementedException();
         }
     }
 }

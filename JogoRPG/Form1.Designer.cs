@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cbJogador1 = new System.Windows.Forms.ComboBox();
-            this.btnPersonagem = new System.Windows.Forms.Button();
+            this.btnNovoJogo = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.imagemPersonagem1 = new System.Windows.Forms.PictureBox();
             this.btnFechar = new System.Windows.Forms.Button();
@@ -63,26 +63,26 @@
             this.cbJogador1.Sorted = true;
             this.cbJogador1.TabIndex = 1;
             // 
-            // btnPersonagem
+            // btnNovoJogo
             // 
-            this.btnPersonagem.AutoSize = true;
-            this.btnPersonagem.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnPersonagem.Location = new System.Drawing.Point(490, 12);
-            this.btnPersonagem.Name = "btnPersonagem";
-            this.btnPersonagem.Size = new System.Drawing.Size(100, 23);
-            this.btnPersonagem.TabIndex = 2;
-            this.btnPersonagem.Text = "Criar Personagem";
-            this.btnPersonagem.UseVisualStyleBackColor = true;
-            this.btnPersonagem.Click += new System.EventHandler(this.btnPersonagem_Click);
+            this.btnNovoJogo.AutoSize = true;
+            this.btnNovoJogo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnNovoJogo.Location = new System.Drawing.Point(490, 12);
+            this.btnNovoJogo.Name = "btnNovoJogo";
+            this.btnNovoJogo.Size = new System.Drawing.Size(93, 23);
+            this.btnNovoJogo.TabIndex = 2;
+            this.btnNovoJogo.Text = "Iniciar Combate!";
+            this.btnNovoJogo.UseVisualStyleBackColor = true;
+            this.btnNovoJogo.Click += new System.EventHandler(this.btnPersonagem_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(108, 6);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Personagem";
+            this.label2.Text = "Jogador-1";
             // 
             // imagemPersonagem1
             // 
@@ -145,9 +145,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(727, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Personagem";
+            this.label1.Text = "Jogador-2";
             // 
             // cbJogador2
             // 
@@ -185,7 +185,7 @@
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.imagemPersonagem1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnPersonagem);
+            this.Controls.Add(this.btnNovoJogo);
             this.Controls.Add(this.cbJogador1);
             this.Name = "Form1";
             this.Text = "JOGO-RPG";
@@ -201,7 +201,7 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cbJogador1;
-        private System.Windows.Forms.Button btnPersonagem;
+        private System.Windows.Forms.Button btnNovoJogo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox imagemPersonagem1;
         private System.Windows.Forms.Button btnFechar;

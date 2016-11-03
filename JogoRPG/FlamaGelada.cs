@@ -10,7 +10,7 @@ namespace JogoRPG
     {
         public FlamaGelada()
         {
-            this.valorMagia = -320;
+            this.valorMagia = 320;
             this.gastoMana = 14;
         }
 

@@ -10,7 +10,7 @@ namespace JogoRPG
     {
         public HalitoFogo()
         {
-            this.valorMagia = -400;
+            this.valorMagia = 400;
             this.gastoMana = 12;
         }
     }

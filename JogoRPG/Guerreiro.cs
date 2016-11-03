@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace JogoRPG
 {
@@ -10,6 +11,7 @@ namespace JogoRPG
 
         private void atributos()
         {
+
             vida = 4000;
             mana = 30;
             forcaFisica = 100;
@@ -17,6 +19,10 @@ namespace JogoRPG
             resistArmadura = 80;
             resistMagica = 20;
             agilidade = 50;
+            this.defesas = new List<int>();
+            this.defesas.Add(agilidade);
+            this.defesas.Add(resistMagica);
+            defesas.Add(resistArmadura);
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/guerreiro.jpg";
         }
 
@@ -46,20 +52,25 @@ namespace JogoRPG
             porrete= new Porrete();
         }
 
-        public  override void ataque(ref int vidaAtacado, string tipoAtaque)
+        public  override void ataque(string tipoAtaque, Personagem personagemdefesa)
         {
             switch (tipoAtaque)
             {
-                case "tempestade": tempestade.executaMagia(ref vidaAtacado, ref this.mana, this.forcaMagica);
+                case "tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.mana, this.forcaMagica),personagemdefesa);
                     break;
-                case "espada barroca": espada.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                case "espada barroca":personagemdefesa.defesa(espada.executaAtaque(this.forcaFisica),personagemdefesa);
                     break;
-                case "porete": porrete.executaAtaque(ref vidaAtacado, this.forcaFisica);
+                case "porete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica),personagemdefesa);
                     break;
             }
         }
 
         public override void cura()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)
         {
             throw new NotImplementedException();
         }

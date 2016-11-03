@@ -6,7 +6,7 @@ namespace JogoRPG
     {
         public Bio()
         {
-            this.valorMagia = -360;
+            this.valorMagia = 360;
             this.gastoMana = 14;
         }
     }
