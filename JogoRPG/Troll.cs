@@ -10,8 +10,8 @@ namespace JogoRPG
         Cajado cajado;
         private void atributos()
         {
-            vida = 2800;
-            mana = 20;
+            Vida = 2800;
+            Mana = 20;
             forcaFisica = 100;
             forcaMagica = 20;
             resistArmadura = 100;
@@ -55,19 +55,14 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "intoxicação":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.mana, this.forcaMagica),personagemdefesa);
+                case "intoxicação":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica),personagemdefesa);
+                case "porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
-                case "cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica),personagemdefesa);
+                case "cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
             }
             
-        }
-
-        public override void cura()
-        {
-            throw new NotImplementedException();
         }
 
         public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)

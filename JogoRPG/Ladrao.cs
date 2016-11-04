@@ -13,8 +13,8 @@ namespace JogoRPG
         
         private void atributos()
         {
-            vida = 2800;
-            mana = 50;
+            Vida = 2800;
+            Mana = 50;
             forcaFisica = 50;
             forcaMagica = 30;
             resistArmadura = 40;
@@ -55,24 +55,19 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "intoxicação":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.mana, this.forcaMagica),personagemdefesa);
+                case "intoxicação":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.mana,this.forcaMagica),personagemdefesa);
+                case "tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana,this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica),personagemdefesa);
+                case "porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
-                case "cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica),personagemdefesa);
+                case "cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
-                case "besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica),personagemdefesa);
+                case "besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
-                case "esfera":personagemdefesa.defesa(esfera.executaAtaque(this.forcaFisica),personagemdefesa);
+                case "esfera":personagemdefesa.defesa(esfera.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
             }
-        }
-
-        public override void cura()
-        {
-            throw new NotImplementedException();
         }
 
         public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)

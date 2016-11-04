@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace JogoRPG
 {
     class Bio : Magia

@@ -9,8 +9,8 @@ namespace JogoRPG
         GarraLetal garraLetal;
         private void atributos()
         {
-            vida = 3000;
-            mana = 40;
+            Vida = 3000;
+            Mana = 40;
             forcaFisica = 100;
             forcaMagica = 20;
             resistArmadura = 100;
@@ -50,13 +50,8 @@ namespace JogoRPG
         }
         public override void ataque(string tipoAtaque, Personagem personagemdefesa)
         {
-            if (tipoAtaque == "halito de fogo") personagemdefesa.defesa(halitoFogo.executaMagia(ref this.mana,this.forcaMagica),personagemdefesa);
-            else personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica),personagemdefesa);
-        }
-
-        public override void cura()
-        {
-            throw new NotImplementedException();
+            if (tipoAtaque == "halito de fogo") personagemdefesa.defesa(halitoFogo.executaMagia(ref this.Mana,this.forcaMagica,personagemdefesa),personagemdefesa);
+            else personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
         }
 
         public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)

@@ -5,7 +5,6 @@ using System.Windows.Forms;
 
 namespace JogoRPG
 {
-   
     public partial class Form1 : Form
     {
         List<Jogador> jogadores = new List<Jogador>();
@@ -28,13 +27,13 @@ namespace JogoRPG
         }
         private void criaComboBox()
         {
-            for (int x = 0; x <= jogadores[0].personagens.Count - 1; x++)
+            for (int x = 0; x <= jogadores[0].Personagens.Count - 1; x++)
             {
-                cbJogador1.Items.Add(jogadores[0].personagens[x]);
+                cbJogador1.Items.Add(jogadores[0].Personagens[x]);
             }
-            for (int x = 0; x <= jogadores[1].personagens.Count - 1; x++)
+            for (int x = 0; x <= jogadores[1].Personagens.Count - 1; x++)
             {
-                cbJogador2.Items.Add(jogadores[1].personagens[x]);
+                cbJogador2.Items.Add(jogadores[1].Personagens[x]);
             }
         }
 
@@ -42,11 +41,8 @@ namespace JogoRPG
         {
             Application.Exit();
         }
-
         private void btnAtaque_Click(object sender, EventArgs e)
         {
-            do
-            {
                 try
                 {
                     cbAtk1();
@@ -57,19 +53,15 @@ namespace JogoRPG
                     imagemAtacante(a, atributos1);
                     imagemAtacado(b, atributos2);
                 }
-                catch (TypeInitializationException erro)
+                catch (NullReferenceException)
                 {
-                    MessageBox.Show("preencha as opções corretamente!" + erro.ToString());
-                    cbAtkJ1.SelectedIndex = 1;
-                }
-            } while (cbJogador1.SelectedItem.ToString() == null || cbJogador2.SelectedItem.ToString() == null /*|| cbAtkJ1.SelectedItem.ToString() == null*/);
-            
-            
+                    MessageBox.Show("preencha as opções corretamente!");
+                cbAtkJ1.SelectedItem = 1;
+                }   
         }
-
         private void cbAtk1()
         {
-            foreach (Personagem a in jogadores[0].personagens)
+            foreach (Personagem a in jogadores[0].Personagens)
             {
                 Personagem teste = (Personagem)cbJogador1.SelectedItem;
                 if (teste == a)
@@ -78,7 +70,7 @@ namespace JogoRPG
                 }
             }
 
-            foreach (Personagem a in jogadores[1].personagens)
+            foreach (Personagem a in jogadores[1].Personagens)
             {
                 Personagem teste = (Personagem)cbJogador2.SelectedItem;
                 if (teste == a)
@@ -89,7 +81,7 @@ namespace JogoRPG
         }
         private void cbAtk2()
         {
-            foreach (Personagem a in jogadores[1].personagens)
+            foreach (Personagem a in jogadores[1].Personagens)
             {
                 Personagem teste = (Personagem)cbJogador2.SelectedItem;
                 if (teste == a)
@@ -98,7 +90,7 @@ namespace JogoRPG
                 }
             }
 
-            foreach (Personagem a in jogadores[0].personagens)
+            foreach (Personagem a in jogadores[0].Personagens)
             {
                 Personagem teste = (Personagem)cbJogador1.SelectedItem;
                 if (teste == a)
@@ -119,10 +111,7 @@ namespace JogoRPG
 
         private void btnJogador2Atk_Click(object sender, EventArgs e)
         {
-            do
-            {
-                try
-                {
+            try{
                     cbAtk2();
                     jogadores[1].ataque(jogadores[1].personagemAtacante, jogadores[0].personagemAtacado, "bio");
                     string atributos1 = "", atributos2 = "";
@@ -131,15 +120,12 @@ namespace JogoRPG
                     imagemAtacante(b, atributos2);
                     imagemAtacado(a, atributos1);
                 }
-                catch (TypeInitializationException erro)
+                catch (NullReferenceException)
                 {
-                    MessageBox.Show("preencha as opções corretamente!" + erro.ToString());
-                    cbAtkJ1.SelectedIndex = 1;
+                    MessageBox.Show("preencha as opções corretamente!");
+                    cbAtkJ2.SelectedItem = 1;
                 }
-            } while (cbJogador1.SelectedItem.ToString() == "" || cbJogador2.SelectedItem.ToString() == "" /*|| cbAtkJ1.SelectedItem.ToString() == ""*/);
-
         }
-
         private void imagemAtacante(string caminho,string atributosPersonagem)
         {
             imagem = Image.FromFile(caminho);

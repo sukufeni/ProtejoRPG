@@ -5,9 +5,9 @@ namespace JogoRPG
 {
     public abstract class Personagem : IEmetodos
     {
-        internal int vida;
+        internal int Vida;
         protected int dano;
-        internal int mana;
+        public int Mana;
         protected int forcaFisica;
         protected int forcaMagica;
         protected int resistArmadura;
@@ -20,16 +20,13 @@ namespace JogoRPG
         protected bool ataqueespecial;
         internal List<int> defesas;
         protected List<Magia> Curas;
-
         public virtual string atributosPersonagem()
         {
-            return "vida:" + vida + " - " + "mana: " + mana + "\n" + "força-fisica: " + forcaFisica + " - " + "força-magica: " + forcaMagica + "\n" + "resistencia-armadura: " + resistArmadura + " - " + "resistencia-magica: " + resistMagica;
+            return "vida:" + Vida + " - " + "mana: " + Mana + "\n" + "força-fisica: " + forcaFisica + " - " + "força-magica: " + forcaMagica + "\n" + "resistencia-armadura: " + resistArmadura + " - " + "resistencia-magica: " + resistMagica;
         }
         public abstract void constroiMagia();
         public abstract void constroiArmas();// mudar para inicializar a arma mais fraca
         public abstract void ataque(string tipoAtaque, Personagem personagemDefesa);
-
-        public abstract void cura();
 
         Magia IEmetodos.constroiMagia()
         {
@@ -48,9 +45,18 @@ namespace JogoRPG
 
         public virtual void defesa(int danoAtaque, Personagem personagemDefesa)
         {
-            personagemDefesa.defesas.Sort();
-            int defesa = defesas[0];
-            personagemDefesa.vida -= danoAtaque - defesa;
+            if (danoAtaque <= personagemDefesa.Vida) {
+                if(danoAtaque > 0)
+                {
+                    personagemDefesa.defesas.Sort();
+                    int defesa = defesas[0];
+                    personagemDefesa.Vida -= danoAtaque - defesa;
+                }
+            }
+            else
+            {
+                personagemDefesa.Vida = 0;
+            }
         }
         public abstract int ataqueEspecial(ref int vidaAtacado, string tipoAtaque);
     }

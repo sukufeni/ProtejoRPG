@@ -7,25 +7,12 @@ namespace JogoRPG
     {
         Bio bio;
         GarraLetal garraLetal;
-        private static Animal instance;
-
-        public static Animal Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Animal();
-                }
-                return instance;
-            }
-        }
 
         private void atributos()
         {
 
-            vida = 3200;
-            mana = 30;
+            Vida = 3200;
+            Mana = 30;
             forcaFisica = 80;
             forcaMagica = 20;
             resistArmadura = 90;
@@ -63,20 +50,16 @@ namespace JogoRPG
         
         public override void ataque(string tipoAtaque, Personagem personagemdefesa)
         {
-            if (tipoAtaque == "bio") personagemdefesa.defesa(bio.executaMagia(ref this.mana, this.forcaMagica), personagemdefesa);
-            else personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica),personagemdefesa);
-        }
-
-        public override void cura()
-        {
-            throw new NotImplementedException();
+            
+            if (tipoAtaque == "bio")personagemdefesa.defesa(bio.executaMagia(ref this.Mana, this.forcaMagica,personagemdefesa), personagemdefesa);
+            else personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
         }
 
         public override void defesa(int danoAtaque, Personagem personagemDefesa)
         {
             personagemDefesa.defesas.Sort();
             int defesa = defesas[0];
-            personagemDefesa.vida -= danoAtaque - defesa / 100;
+            personagemDefesa.Vida -= danoAtaque - defesa / 100;
         }
 
         public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)

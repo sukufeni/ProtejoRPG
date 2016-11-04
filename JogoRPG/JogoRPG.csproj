@@ -66,6 +66,7 @@
     <Compile Include="Guerreiro.cs" />
     <Compile Include="HalitoFogo.cs" />
     <Compile Include="Humano.cs" />
+    <Compile Include="ICura.cs" />
     <Compile Include="IEmetodos.cs" />
     <Compile Include="Intoxicação.cs" />
     <Compile Include="Inumano.cs" />

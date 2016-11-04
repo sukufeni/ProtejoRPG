@@ -12,8 +12,8 @@ namespace JogoRPG
         private void atributos()
         {
 
-            vida = 4000;
-            mana = 30;
+            Vida = 4000;
+            Mana = 30;
             forcaFisica = 100;
             forcaMagica = 20;
             resistArmadura = 80;
@@ -56,18 +56,13 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.mana, this.forcaMagica),personagemdefesa);
+                case "tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "espada barroca":personagemdefesa.defesa(espada.executaAtaque(this.forcaFisica),personagemdefesa);
+                case "espada barroca":personagemdefesa.defesa(espada.executaAtaque(this.forcaFisica,personagemdefesa),personagemdefesa);
                     break;
-                case "porete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica),personagemdefesa);
+                case "porete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
             }
-        }
-
-        public override void cura()
-        {
-            throw new NotImplementedException();
         }
 
         public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)

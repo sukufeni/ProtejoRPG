@@ -4,15 +4,23 @@ namespace JogoRPG
 {
     public class Jogador
     {
-        public Animal animal;
-        public Dragao dragao;
-        public Zumbi zumbi;
-        public Troll troll;
-        public Ladrao ladrao;
-        public Guerreiro guerreiro;
-        public Paladino paladino;
-        public Mago mago;
-        public List<Personagem> personagens;
+        private Animal animal { get; set; }
+        private Dragao dragao { get; set; }
+        private Zumbi zumbi { get; set; }
+        private Troll troll { get; set; }
+        private Ladrao ladrao { get; set; }
+        private Guerreiro guerreiro { get; set; }
+        private Paladino paladino { get; set; }
+        private Mago mago { get; set; }
+
+        public List<Personagem> Personagens
+        {
+            get
+            {
+                return personagens;
+            }
+        }
+        private List<Personagem> personagens;
         public int vida;
         public Personagem personagemAtacante;
         public Personagem personagemAtacado;
@@ -32,20 +40,26 @@ namespace JogoRPG
             this.paladino = new Paladino();
             this.mago = new Mago();
             this.personagens = new List<Personagem>();
-            personagens.Add(animal);
-            personagens.Add(dragao);
-            personagens.Add(zumbi);
-            personagens.Add(troll);
-            personagens.Add(ladrao);
-            personagens.Add(guerreiro);
-            personagens.Add(paladino);
-            personagens.Add(mago);
+            Personagens.Add(animal);
+            Personagens.Add(dragao);
+            Personagens.Add(zumbi);
+            Personagens.Add(troll);
+            Personagens.Add(ladrao);
+            Personagens.Add(guerreiro);
+            Personagens.Add(paladino);
+            Personagens.Add(mago);
         }
 
         public void ataque(Personagem atacante, Personagem atacado, string tipoMagia)
         {
-            atacante.ataque("bio", atacado);
-            
+            try
+            {
+                atacante.ataque("bio", atacado);
+            }
+            catch(KeyNotFoundException e )
+            {
+                throw e;
+            }
         }
         private static void executaRodada()
         {

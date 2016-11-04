@@ -117,6 +117,7 @@
             this.imagemPersonagem2.Location = new System.Drawing.Point(730, 186);
             this.imagemPersonagem2.Name = "imagemPersonagem2";
             this.imagemPersonagem2.Size = new System.Drawing.Size(347, 187);
+            this.imagemPersonagem2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.imagemPersonagem2.TabIndex = 10;
             this.imagemPersonagem2.TabStop = false;
             // 
