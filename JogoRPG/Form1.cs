@@ -10,6 +10,7 @@ namespace JogoRPG
         List<Jogador> jogadores = new List<Jogador>();
         Image imagem;
         string a, b;
+        private int contRodada = 1;
         public Form1()
         {
             InitializeComponent();
@@ -46,6 +47,7 @@ namespace JogoRPG
                 try
                 {
                     cbAtk1();
+                if (!Jogador.executaRodada()) {
                     jogadores[0].ataque(jogadores[0].personagemAtacante, jogadores[1].personagemAtacado, "bio");
                     string atributos1 = "", atributos2 = "";
                     a = jogadores[0].caminhoatacante(out atributos2, jogadores[0].personagemAtacante);
@@ -53,10 +55,11 @@ namespace JogoRPG
                     imagemAtacante(a, atributos1);
                     imagemAtacado(b, atributos2);
                 }
+                    
+                }
                 catch (NullReferenceException)
                 {
                     MessageBox.Show("preencha as opções corretamente!");
-                cbAtkJ1.SelectedItem = 1;
                 }   
         }
         private void cbAtk1()
@@ -113,6 +116,7 @@ namespace JogoRPG
         {
             try{
                     cbAtk2();
+                if (Jogador.executaRodada()){
                     jogadores[1].ataque(jogadores[1].personagemAtacante, jogadores[0].personagemAtacado, "bio");
                     string atributos1 = "", atributos2 = "";
                     a = jogadores[1].caminhoatacante(out atributos2, jogadores[1].personagemAtacante);
@@ -120,12 +124,13 @@ namespace JogoRPG
                     imagemAtacante(b, atributos2);
                     imagemAtacado(a, atributos1);
                 }
+                }
                 catch (NullReferenceException)
                 {
                     MessageBox.Show("preencha as opções corretamente!");
-                    cbAtkJ2.SelectedItem = 1;
                 }
         }
+
         private void imagemAtacante(string caminho,string atributosPersonagem)
         {
             imagem = Image.FromFile(caminho);

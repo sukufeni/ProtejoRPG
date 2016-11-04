@@ -12,6 +12,7 @@ namespace JogoRPG
         private Guerreiro guerreiro { get; set; }
         private Paladino paladino { get; set; }
         private Mago mago { get; set; }
+        private static int contRodada = 1;
 
         public List<Personagem> Personagens
         {
@@ -20,6 +21,20 @@ namespace JogoRPG
                 return personagens;
             }
         }
+
+        public static int ContRodada
+        {
+            get
+            {
+                return contRodada;
+            }
+
+            set
+            {
+                contRodada ++;
+            }
+        }
+
         private List<Personagem> personagens;
         public int vida;
         public Personagem personagemAtacante;
@@ -50,21 +65,31 @@ namespace JogoRPG
             Personagens.Add(mago);
         }
 
-        public void ataque(Personagem atacante, Personagem atacado, string tipoMagia)
+        public void ataque(Personagem atacante, Personagem atacado, string ataque)
         {
             try
             {
                 atacante.ataque("bio", atacado);
+                ContRodada = 1;
             }
             catch(KeyNotFoundException e )
             {
                 throw e;
             }
         }
-        private static void executaRodada()
+        public static bool executaRodada()
         {
+            if (ContRodada % 2 == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
             
         }
+        
         public string caminhoatacante(out string atributos,Personagem atacante)
         {
             atributos = atacante.atributosPersonagem();

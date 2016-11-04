@@ -28,12 +28,12 @@ namespace JogoRPG
         public abstract void constroiArmas();// mudar para inicializar a arma mais fraca
         public abstract void ataque(string tipoAtaque, Personagem personagemDefesa);
 
-        Magia IEmetodos.constroiMagia()
+
+        Arma IEmetodos.constroiArmas()
         {
             throw new NotImplementedException();
         }
-
-        Arma IEmetodos.constroiArmas()
+        Magia IEmetodos.constroiMagia()
         {
             throw new NotImplementedException();
         }
