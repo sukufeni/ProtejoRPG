@@ -22,6 +22,7 @@ namespace JogoRPG
             this.defesas = new List<int>();
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
+            this.ataques = new List<string>();
             defesas.Add(resistArmadura);
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/guerreiro.jpg";
         }
@@ -39,6 +40,9 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
+            ataques.Add(tempestade.ToString());
+            ataques.Add(espada.ToString());
+            ataques.Add(porrete.ToString());
         }
 
         public override void constroiMagia()
@@ -56,11 +60,11 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "espada barroca":personagemdefesa.defesa(espada.executaAtaque(this.forcaFisica,personagemdefesa),personagemdefesa);
+                case "EspadaBarroca":personagemdefesa.defesa(espada.executaAtaque(this.forcaFisica,personagemdefesa),personagemdefesa);
                     break;
-                case "porete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
             }
         }

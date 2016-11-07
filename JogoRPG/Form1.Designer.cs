@@ -60,6 +60,7 @@
             this.cbJogador1.Size = new System.Drawing.Size(121, 21);
             this.cbJogador1.Sorted = true;
             this.cbJogador1.TabIndex = 1;
+            this.cbJogador1.SelectedIndexChanged += new System.EventHandler(this.cbJogador1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -152,6 +153,7 @@
             this.cbJogador2.Size = new System.Drawing.Size(121, 21);
             this.cbJogador2.Sorted = true;
             this.cbJogador2.TabIndex = 11;
+            this.cbJogador2.SelectedIndexChanged += new System.EventHandler(this.cbJogador2_SelectedIndexChanged);
             // 
             // lbAtributos2
             // 

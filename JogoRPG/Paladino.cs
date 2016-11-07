@@ -21,6 +21,7 @@ namespace JogoRPG
             resistMagica = 60;
             agilidade = 60;
             this.defesas = new List<int>();
+            this.ataques = new List<string>();
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
             defesas.Add(resistArmadura);
@@ -42,9 +43,17 @@ namespace JogoRPG
 
             constroiArmas();
             constroiMagia();
+            incluiLista();
         }
 
-      
+        private void incluiLista()
+        {
+            Ataques.Add(flamaGelada.ToString());
+            ataques.Add(tridenteSagrado.ToString());
+            ataques.Add(tempestade.ToString());
+            ataques.Add(besta.ToString());
+        }
+
         public override void constroiMagia()
         {
             magiaVida = new PocaoVida();
@@ -61,13 +70,13 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "flama gelada":personagemdefesa.defesa(flamaGelada.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "FlamaGelada":personagemdefesa.defesa(flamaGelada.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "tridente sagrado":personagemdefesa.defesa(tridenteSagrado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "TridenteSagrado":personagemdefesa.defesa(tridenteSagrado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
-                case "besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
             }
 

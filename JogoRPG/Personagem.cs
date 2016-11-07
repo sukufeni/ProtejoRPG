@@ -20,6 +20,16 @@ namespace JogoRPG
         protected bool ataqueespecial;
         internal List<int> defesas;
         protected List<Magia> Curas;
+        protected List<string> ataques;
+
+        public List<string> Ataques
+        {
+            get
+            {
+                return ataques;
+            }
+        }
+
         public virtual string atributosPersonagem()
         {
             return "vida:" + Vida + " - " + "mana: " + Mana + "\n" + "força-fisica: " + forcaFisica + " - " + "força-magica: " + forcaMagica + "\n" + "resistencia-armadura: " + resistArmadura + " - " + "resistencia-magica: " + resistMagica;

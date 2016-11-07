@@ -17,6 +17,7 @@ namespace JogoRPG
             resistMagica = 50;
             agilidade = 80;
             this.defesas = new List<int>();
+            this.ataques = new List<string>();
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
             defesas.Add(resistArmadura);
@@ -36,9 +37,9 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
+            ataques.Add(halitoFogo.ToString());
+            ataques.Add(garraLetal.ToString());
         }
-
-        
         public override void constroiMagia()
         {
             halitoFogo = new HalitoFogo();
@@ -50,7 +51,7 @@ namespace JogoRPG
         }
         public override void ataque(string tipoAtaque, Personagem personagemdefesa)
         {
-            if (tipoAtaque == "halito de fogo") personagemdefesa.defesa(halitoFogo.executaMagia(ref this.Mana,this.forcaMagica,personagemdefesa),personagemdefesa);
+            if (tipoAtaque == "HalitoFogo") personagemdefesa.defesa(halitoFogo.executaMagia(ref this.Mana,this.forcaMagica,personagemdefesa),personagemdefesa);
             else personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
         }
 

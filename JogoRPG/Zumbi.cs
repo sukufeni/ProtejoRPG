@@ -5,7 +5,7 @@ namespace JogoRPG
 {
     public class Zumbi : Inumano
     {
-        Intoxicação intoxicacao;
+        Intoxicacao intoxicacao;
         GarraLetal garraLetal;
         Porrete porrete;
         Cajado cajado;
@@ -19,6 +19,7 @@ namespace JogoRPG
             resistMagica = 90;
             agilidade = 20;
             this.defesas = new List<int>();
+            this.ataques = new List<string>();
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
             defesas.Add(resistArmadura);
@@ -38,11 +39,15 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
+            ataques.Add(intoxicacao.ToString());
+            ataques.Add(garraLetal.ToString());
+            ataques.Add(porrete.ToString());
+            ataques.Add(cajado.ToString());
         }
 
         public override void constroiMagia()
         {
-             intoxicacao = new Intoxicação();
+             intoxicacao = new Intoxicacao();
         }
 
         public override void constroiArmas()
@@ -56,13 +61,13 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "intoxicação":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa), personagemdefesa);
+                case "Intoxicacao":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa), personagemdefesa);
                     break;
-                case "garra letal":personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa), personagemdefesa);
+                case "GarraLetal":personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa), personagemdefesa);
                     break;
-                case "porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
-                case "cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
             }
         }

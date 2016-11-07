@@ -10,7 +10,7 @@ namespace JogoRPG
         List<Jogador> jogadores = new List<Jogador>();
         Image imagem;
         string a, b;
-        private int contRodada = 1;
+        string atributos1 = "", atributos2 = "", ataqueAtual;
         public Form1()
         {
             InitializeComponent();
@@ -47,9 +47,9 @@ namespace JogoRPG
                 try
                 {
                     cbAtk1();
+                    ataque(cbAtkJ1.SelectedItem.ToString());
                 if (!Jogador.executaRodada()) {
-                    jogadores[0].ataque(jogadores[0].personagemAtacante, jogadores[1].personagemAtacado, "bio");
-                    string atributos1 = "", atributos2 = "";
+                    jogadores[0].ataque(jogadores[0].personagemAtacante, jogadores[1].personagemAtacado, ataqueAtual);
                     a = jogadores[0].caminhoatacante(out atributos2, jogadores[0].personagemAtacante);
                     b = jogadores[1].caminhoatacado(out atributos1, jogadores[1].personagemAtacado);
                     imagemAtacante(a, atributos1);
@@ -61,6 +61,10 @@ namespace JogoRPG
                 {
                     MessageBox.Show("preencha as opções corretamente!");
                 }   
+        }
+        private void ataque(string entrada)
+        {
+            this.ataqueAtual = entrada.Remove(0, 8);
         }
         private void cbAtk1()
         {
@@ -102,7 +106,6 @@ namespace JogoRPG
                 }
             }
         }
-
         private void imagemAtacado(string caminho, string v)
         {
             imagem = Image.FromFile(caminho);
@@ -111,14 +114,13 @@ namespace JogoRPG
             imagemPersonagem2.Height = imagem.Height;
             lbAtributos.Text = v;
         }
-
         private void btnJogador2Atk_Click(object sender, EventArgs e)
         {
             try{
                     cbAtk2();
+                    ataque(cbAtkJ2.SelectedItem.ToString());
                 if (Jogador.executaRodada()){
-                    jogadores[1].ataque(jogadores[1].personagemAtacante, jogadores[0].personagemAtacado, "bio");
-                    string atributos1 = "", atributos2 = "";
+                    jogadores[1].ataque(jogadores[1].personagemAtacante, jogadores[0].personagemAtacado, ataqueAtual);
                     a = jogadores[1].caminhoatacante(out atributos2, jogadores[1].personagemAtacante);
                     b = jogadores[0].caminhoatacado(out atributos1, jogadores[0].personagemAtacado);
                     imagemAtacante(b, atributos2);
@@ -129,6 +131,29 @@ namespace JogoRPG
                 {
                     MessageBox.Show("preencha as opções corretamente!");
                 }
+        }
+
+        private void cbJogador2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbAtk2();
+            cbAtkJ2.Items.Clear();
+            for (int x = 0; x < jogadores[1].personagemAtacante.Ataques.Count; x++)
+            {
+                cbAtkJ2.Items.Add(jogadores[1].personagemAtacante.Ataques[x]);
+            }
+        }
+
+        private void cbJogador1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbAtk1();
+            cbAtkJ1.Items.Clear();
+            for (int x = 0; x < jogadores[0].personagemAtacante.Ataques.Count;x++)
+            {
+                cbAtkJ1.Items.Add(jogadores[0].personagemAtacante.Ataques[x]);
+            }
+        }
+        private void cbAtkJ2_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
 
         private void imagemAtacante(string caminho,string atributosPersonagem)

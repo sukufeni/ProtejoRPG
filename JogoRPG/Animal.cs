@@ -19,6 +19,7 @@ namespace JogoRPG
             agilidade = 50;
             resistMagica = 20;
             this.defesas = new List<int>();
+            this.ataques = new List<string>();
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
             defesas.Add(resistArmadura);
@@ -36,6 +37,8 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
+            this.ataques.Add(bio.ToString());
+            this.ataques.Add(garraLetal.ToString());
         }
 
         public override void constroiMagia()
@@ -51,7 +54,7 @@ namespace JogoRPG
         public override void ataque(string tipoAtaque, Personagem personagemdefesa)
         {
             
-            if (tipoAtaque == "bio")personagemdefesa.defesa(bio.executaMagia(ref this.Mana, this.forcaMagica,personagemdefesa), personagemdefesa);
+            if (tipoAtaque == "Bio")personagemdefesa.defesa(bio.executaMagia(ref this.Mana, this.forcaMagica,personagemdefesa), personagemdefesa);
             else personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
         }
 

@@ -4,7 +4,7 @@ namespace JogoRPG
 {
    public  class Ladrao : Humano
     {
-        Intoxicação intoxicacao;
+        Intoxicacao intoxicacao;
         Tempestade tempestade;
         EsferaAtaque esfera;
         Porrete porrete;
@@ -20,6 +20,7 @@ namespace JogoRPG
             resistArmadura = 40;
             resistMagica = 50;
             agilidade = 100;
+            this.ataques = new System.Collections.Generic.List<string>();
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/goblin.jpg";
         }
 
@@ -36,11 +37,17 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
+            ataques.Add(intoxicacao.ToString());
+            ataques.Add(tempestade.ToString());
+            ataques.Add(porrete.ToString());
+            ataques.Add(cajado.ToString());
+            ataques.Add(besta.ToString());
+            ataques.Add(esfera.ToString());
         }
 
         public override void constroiMagia()
         {
-            intoxicacao = new Intoxicação();
+            intoxicacao = new Intoxicacao();
             tempestade = new Tempestade();
         }
 
@@ -55,17 +62,17 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "intoxicação":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "Intoxicacao":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana,this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana,this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
-                case "cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
-                case "besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
-                case "esfera":personagemdefesa.defesa(esfera.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "EsferaAtaque":personagemdefesa.defesa(esfera.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
             }
         }

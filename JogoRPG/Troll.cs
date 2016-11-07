@@ -5,7 +5,7 @@ namespace JogoRPG
 {
     public class Troll : Inumano
     {
-        Intoxicação intoxicacao;
+        Intoxicacao intoxicacao;
         Porrete porrete;
         Cajado cajado;
         private void atributos()
@@ -18,6 +18,7 @@ namespace JogoRPG
             resistMagica = 20;
             agilidade = 20;
             this.defesas = new List<int>();
+            this.ataques = new List<string>();
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
             defesas.Add(resistArmadura);
@@ -37,12 +38,19 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
+            incluiLista();
         }
 
+        private void incluiLista()
+        {
+            ataques.Add(intoxicacao.ToString());
+            ataques.Add(porrete.ToString());
+            ataques.Add(cajado.ToString());
+        }
 
         public override void constroiMagia()
         {
-             intoxicacao = new Intoxicação();
+             intoxicacao = new Intoxicacao();
         }
 
         public override void constroiArmas()
@@ -55,11 +63,11 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "intoxicação":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "Intoxicacao":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
-                case "cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
                     break;
             }
             

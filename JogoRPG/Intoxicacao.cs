@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace JogoRPG
 {
-    class Intoxicação : Magia
+    class Intoxicacao : Magia
     {
-        public Intoxicação()
+        public Intoxicacao()
         {
             this.valorMagia = 280;
             this.gastoMana = 12;
