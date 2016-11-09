@@ -55,17 +55,25 @@ namespace JogoRPG
 
         public virtual void defesa(int danoAtaque, Personagem personagemDefesa)
         {
-            if (danoAtaque <= personagemDefesa.Vida) {
-                if(danoAtaque > 0)
+            try
+            {
+                if (danoAtaque <= personagemDefesa.Vida)
                 {
-                    personagemDefesa.defesas.Sort();
-                    int defesa = defesas[0];
-                    personagemDefesa.Vida -= danoAtaque - defesa;
+                    if (danoAtaque > 0)
+                    {
+                        personagemDefesa.defesas.Sort();
+                        int defesa = defesas[0];
+                        personagemDefesa.Vida -= danoAtaque - defesa;
+                    }
+                }
+                else
+                {
+                    personagemDefesa.Vida = 0;
                 }
             }
-            else
+            catch (NullReferenceException e)
             {
-                personagemDefesa.Vida = 0;
+                throw e;
             }
         }
         public abstract int ataqueEspecial(ref int vidaAtacado, string tipoAtaque);

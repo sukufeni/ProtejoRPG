@@ -52,8 +52,7 @@ namespace JogoRPG
         }
         
         public override void ataque(string tipoAtaque, Personagem personagemdefesa)
-        {
-            
+        {   
             if (tipoAtaque == "Bio")personagemdefesa.defesa(bio.executaMagia(ref this.Mana, this.forcaMagica,personagemdefesa), personagemdefesa);
             else personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
         }
@@ -62,7 +61,7 @@ namespace JogoRPG
         {
             personagemDefesa.defesas.Sort();
             int defesa = defesas[0];
-            personagemDefesa.Vida -= danoAtaque - defesa / 100;
+            personagemDefesa.Vida -= danoAtaque - defesa / 25;
         }
 
         public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)

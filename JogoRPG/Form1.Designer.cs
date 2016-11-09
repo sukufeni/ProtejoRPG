@@ -53,7 +53,7 @@
             // 
             // cbJogador1
             // 
-            this.cbJogador1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbJogador1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbJogador1.FormattingEnabled = true;
             this.cbJogador1.Location = new System.Drawing.Point(12, 22);
             this.cbJogador1.Name = "cbJogador1";
@@ -115,6 +115,7 @@
             // 
             // imagemPersonagem2
             // 
+            this.imagemPersonagem2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.imagemPersonagem2.Location = new System.Drawing.Point(730, 186);
             this.imagemPersonagem2.Name = "imagemPersonagem2";
             this.imagemPersonagem2.Size = new System.Drawing.Size(347, 187);
@@ -146,7 +147,7 @@
             // cbJogador2
             // 
             this.cbJogador2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbJogador2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbJogador2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbJogador2.FormattingEnabled = true;
             this.cbJogador2.Location = new System.Drawing.Point(730, 22);
             this.cbJogador2.Name = "cbJogador2";
@@ -167,6 +168,7 @@
             // 
             // cbAtkJ1
             // 
+            this.cbAtkJ1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAtkJ1.FormattingEnabled = true;
             this.cbAtkJ1.Location = new System.Drawing.Point(139, 22);
             this.cbAtkJ1.Name = "cbAtkJ1";
@@ -178,9 +180,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(136, 6);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 16;
-            this.label3.Text = "Ataques";
+            this.label3.Text = "Ações";
             // 
             // label4
             // 
@@ -188,13 +190,14 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(854, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 18;
-            this.label4.Text = "Ataques";
+            this.label4.Text = "Ações";
             // 
             // cbAtkJ2
             // 
             this.cbAtkJ2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAtkJ2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAtkJ2.FormattingEnabled = true;
             this.cbAtkJ2.Location = new System.Drawing.Point(857, 22);
             this.cbAtkJ2.Name = "cbAtkJ2";

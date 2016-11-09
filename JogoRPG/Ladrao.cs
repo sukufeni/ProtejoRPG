@@ -23,6 +23,7 @@ namespace JogoRPG
             this.ataques = new System.Collections.Generic.List<string>();
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/goblin.jpg";
         }
+        
 
         public string CaminhoImagem
         {

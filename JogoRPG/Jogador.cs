@@ -67,15 +67,8 @@ namespace JogoRPG
         }
         public void ataque(Personagem atacante, Personagem atacado, string ataque)
         {
-            try
-            {
-                atacante.ataque(ataque, atacado);
-                ContRodada = 1;
-            }
-            catch(KeyNotFoundException e)
-            {
-                throw e;
-            }
+            atacante.ataque(ataque, atacado);
+            ContRodada = 1;
         }
         public static bool executaRodada()
         {

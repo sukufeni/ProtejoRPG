@@ -9,15 +9,14 @@ namespace JogoRPG
     {
         List<Jogador> jogadores = new List<Jogador>();
         Image imagem;
-        string a, b;
-        string atributos1 = "", atributos2 = "", ataqueAtual;
+        string a, b, atributos1 = "", atributos2 = "", ataqueAtual = "";
+        const string excecao = "preencha os campos de personagem/Ataque corretamente!";
         public Form1()
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
-        {
+        {            
             lbAtributos.Text = "";
             lbAtributos2.Text = "";
             Jogador Jogador1 = new Jogador();
@@ -37,34 +36,49 @@ namespace JogoRPG
                 cbJogador2.Items.Add(jogadores[1].Personagens[x]);
             }
         }
-
-        private void btnFechar_Click(object sender, EventArgs e)
+        private void ataque(string entrada)
         {
-            Application.Exit();
+            this.ataqueAtual = entrada.Remove(0, 8);
         }
         private void btnAtaque_Click(object sender, EventArgs e)
         {
-                try
+           try
+           {
+                cbAtk1();
+                ataque(cbAtkJ1.SelectedItem.ToString());
+                if (!Jogador.executaRodada())
                 {
-                    cbAtk1();
-                    ataque(cbAtkJ1.SelectedItem.ToString());
-                if (!Jogador.executaRodada()) {
                     jogadores[0].ataque(jogadores[0].personagemAtacante, jogadores[1].personagemAtacado, ataqueAtual);
                     a = jogadores[0].caminhoatacante(out atributos2, jogadores[0].personagemAtacante);
                     b = jogadores[1].caminhoatacado(out atributos1, jogadores[1].personagemAtacado);
                     imagemAtacante(a, atributos1);
                     imagemAtacado(b, atributos2);
                 }
-                    
-                }
-                catch (NullReferenceException)
-                {
-                    MessageBox.Show("preencha as opções corretamente!");
-                }   
+           }
+           catch (NullReferenceException)
+           {
+                MessageBox.Show(excecao);
+           }
         }
-        private void ataque(string entrada)
+        private void btnJogador2Atk_Click(object sender, EventArgs e)
         {
-            this.ataqueAtual = entrada.Remove(0, 8);
+            try
+            {
+                cbAtk2();
+                ataque(cbAtkJ2.SelectedItem.ToString());
+                if (Jogador.executaRodada())
+                {
+                    jogadores[1].ataque(jogadores[1].personagemAtacante, jogadores[0].personagemAtacado, ataqueAtual);
+                    a = jogadores[1].caminhoatacante(out atributos2, jogadores[1].personagemAtacante);
+                    b = jogadores[0].caminhoatacado(out atributos1, jogadores[0].personagemAtacado);
+                    imagemAtacante(b, atributos2);
+                    imagemAtacado(a, atributos1);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show(excecao);
+            }
         }
         private void cbAtk1()
         {
@@ -114,24 +128,7 @@ namespace JogoRPG
             imagemPersonagem2.Height = imagem.Height;
             lbAtributos.Text = v;
         }
-        private void btnJogador2Atk_Click(object sender, EventArgs e)
-        {
-            try{
-                    cbAtk2();
-                    ataque(cbAtkJ2.SelectedItem.ToString());
-                if (Jogador.executaRodada()){
-                    jogadores[1].ataque(jogadores[1].personagemAtacante, jogadores[0].personagemAtacado, ataqueAtual);
-                    a = jogadores[1].caminhoatacante(out atributos2, jogadores[1].personagemAtacante);
-                    b = jogadores[0].caminhoatacado(out atributos1, jogadores[0].personagemAtacado);
-                    imagemAtacante(b, atributos2);
-                    imagemAtacado(a, atributos1);
-                }
-                }
-                catch (NullReferenceException)
-                {
-                    MessageBox.Show("preencha as opções corretamente!");
-                }
-        }
+     
 
         private void cbJogador2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -152,9 +149,6 @@ namespace JogoRPG
                 cbAtkJ1.Items.Add(jogadores[0].personagemAtacante.Ataques[x]);
             }
         }
-        private void cbAtkJ2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
 
         private void imagemAtacante(string caminho,string atributosPersonagem)
         {
@@ -163,6 +157,10 @@ namespace JogoRPG
             imagemPersonagem1.Width = imagem.Width;
             imagemPersonagem1.Height = imagem.Height;
             lbAtributos2.Text = atributosPersonagem;
+        }
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
