@@ -23,14 +23,16 @@ namespace JogoRPG
             resistArmadura = 30;
             resistMagica = 100;
             agilidade = 40;
-            this.defesas = new List<int>();
-            this.Curas = new List<Magia>();
-            this.defesas.Add(agilidade);
-            this.defesas.Add(resistMagica);
-            this.ataques = new List<string>();
-            defesas.Add(resistArmadura);
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/mago.jpg";
         }
+
+        private void criaListas()
+        {
+            this.defesas = new List<int>();
+            this.Curas = new List<Magia>();
+            this.acoes = new List<string>();
+        }
+
         public string CaminhoImagem
         {
             get
@@ -44,19 +46,24 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
+            criaListas();
             incluiLista();
+            setVidaManaMaxima();
         }
 
         private void incluiLista()
         {
-            ataques.Add(bio.ToString());
-            ataques.Add(pocaVida.ToString());
-            ataques.Add(magiacura.ToString());
-            ataques.Add(gelada.ToString());
-            ataques.Add(intoxicacao.ToString());
-            ataques.Add(tempestade.ToString());
-            ataques.Add(sagrado.ToString());
-            ataques.Add(cajado.ToString());
+            acoes.Add(bio.ToString());
+            acoes.Add(pocaVida.ToString());
+            acoes.Add(magiacura.ToString());
+            acoes.Add(gelada.ToString());
+            acoes.Add(intoxicacao.ToString());
+            acoes.Add(tempestade.ToString());
+            acoes.Add(sagrado.ToString());
+            acoes.Add(cajado.ToString());
+            defesas.Add(resistArmadura);
+            defesas.Add(resistMagica);
+            defesas.Add(agilidade);
         }
 
         public override void constroiMagia()
@@ -74,39 +81,38 @@ namespace JogoRPG
             sagrado = new TridenteSagrado();
             cajado= new Cajado();
         }
-
-        public void cura()
+        public void cura(Magia e)
         {
-            Curas.Add(pocaVida);
-            Curas.Add(magiacura);
-            Curas.Sort();
-            Magia atual = Curas[0];
-            this.Vida = atual.executaCura(ref this.Mana, this.forcaMagica);
+                this.Vida += e.executaCura(ref this.Mana, this.forcaMagica,this,getVidaMaxima());
         }
 
         public override void ataque(string tipoAtaque, Personagem personagemDefesa)
         {
-            switch (tipoAtaque)
+            switch (tipoAtaque) // segregar para receber somente o tipo ataque? funcionamento igual ao do metodo magia implementado acima
             {
                 case "Bio":
                     personagemDefesa.defesa(bio.executaMagia(ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
                     break;
                 case "FlamaGelada":personagemDefesa.defesa(gelada.executaMagia(ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
                     break;
-                case "Intoxicação":
+                case "Intoxicacao":
                     personagemDefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
                     break;
                 case "Tempestade ":personagemDefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
                     break;
                 case "TridenteSagrado":
-                    personagemDefesa.defesa(sagrado.executaAtaque(this.forcaFisica, personagemDefesa),personagemDefesa);
+                    personagemDefesa.defesa(sagrado.executaAtaque(this.forcaFisica, personagemDefesa),personagemDefesa); somaManaRodada(ref this.Mana);
                     break;
                 case "Cajado":
-                    personagemDefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemDefesa),personagemDefesa);
+                    personagemDefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemDefesa),personagemDefesa); somaManaRodada(ref this.Mana);
+                    break;
+                case "Cura":cura(magiacura);
+                    break;
+                case "PocaoVida":
+                    cura(magiacura);
                     break;
             }
         }
-
         public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)
         {
             throw new NotImplementedException();

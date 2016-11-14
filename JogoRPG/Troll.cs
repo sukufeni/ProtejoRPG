@@ -17,12 +17,13 @@ namespace JogoRPG
             resistArmadura = 100;
             resistMagica = 20;
             agilidade = 20;
-            this.defesas = new List<int>();
-            this.ataques = new List<string>();
-            this.defesas.Add(agilidade);
-            this.defesas.Add(resistMagica);
-            defesas.Add(resistArmadura);
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/troll.jpg";
+        }
+
+        private void criaLista()
+        {
+            this.defesas = new List<int>();
+            this.acoes = new List<string>();
         }
 
         public string CaminhoImagem
@@ -38,14 +39,19 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
+            criaLista();
             incluiLista();
+            setVidaManaMaxima();
         }
 
         private void incluiLista()
         {
-            ataques.Add(intoxicacao.ToString());
-            ataques.Add(porrete.ToString());
-            ataques.Add(cajado.ToString());
+            this.acoes.Add(intoxicacao.ToString());
+            this.acoes.Add(porrete.ToString());
+            this.acoes.Add(cajado.ToString());
+            this.defesas.Add(agilidade);
+            this.defesas.Add(resistMagica);
+            this.defesas.Add(resistArmadura);
         }
 
         public override void constroiMagia()
@@ -65,9 +71,9 @@ namespace JogoRPG
             {
                 case "Intoxicacao":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
             }
             

@@ -20,10 +20,14 @@ namespace JogoRPG
             resistArmadura = 40;
             resistMagica = 50;
             agilidade = 100;
-            this.ataques = new System.Collections.Generic.List<string>();
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/goblin.jpg";
         }
-        
+
+        private void criaListas()
+        {
+            this.acoes = new System.Collections.Generic.List<string>();
+            this.defesas = new System.Collections.Generic.List<int>();
+        }
 
         public string CaminhoImagem
         {
@@ -38,12 +42,22 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
-            ataques.Add(intoxicacao.ToString());
-            ataques.Add(tempestade.ToString());
-            ataques.Add(porrete.ToString());
-            ataques.Add(cajado.ToString());
-            ataques.Add(besta.ToString());
-            ataques.Add(esfera.ToString());
+            criaListas();
+            incluiLista();
+            setVidaManaMaxima();
+        }
+
+        private void incluiLista()
+        {
+            acoes.Add(intoxicacao.ToString());
+            acoes.Add(tempestade.ToString());
+            acoes.Add(porrete.ToString());
+            acoes.Add(cajado.ToString());
+            acoes.Add(besta.ToString());
+            acoes.Add(esfera.ToString());
+            defesas.Add(resistArmadura);
+            defesas.Add(resistMagica);
+            defesas.Add(agilidade);
         }
 
         public override void constroiMagia()
@@ -51,7 +65,6 @@ namespace JogoRPG
             intoxicacao = new Intoxicacao();
             tempestade = new Tempestade();
         }
-
         public override void constroiArmas()
         {
             porrete = new Porrete();
@@ -59,7 +72,7 @@ namespace JogoRPG
             besta = new Besta();
             esfera = new EsferaAtaque();
         }
-        public override void ataque(string tipoAtaque, Personagem personagemdefesa)
+        public override void ataque(string tipoAtaque, Personagem personagemdefesa) // nao esta polimorfico!!!
         {
             switch (tipoAtaque)
             {
@@ -67,13 +80,13 @@ namespace JogoRPG
                     break;
                 case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana,this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "EsferaAtaque":personagemdefesa.defesa(esfera.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "EsferaAtaque":personagemdefesa.defesa(esfera.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
             }
         }

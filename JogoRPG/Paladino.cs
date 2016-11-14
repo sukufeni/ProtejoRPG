@@ -6,7 +6,7 @@ namespace JogoRPG
 {
     public class Paladino : Humano , ICura
     {
-        PocaoVida magiaVida;
+        PocaoVida pocaoVida;
         FlamaGelada flamaGelada;
         Tempestade tempestade;
         TridenteSagrado tridenteSagrado;
@@ -20,14 +20,15 @@ namespace JogoRPG
             resistArmadura = 60;
             resistMagica = 60;
             agilidade = 60;
-            this.defesas = new List<int>();
-            this.ataques = new List<string>();
-            this.defesas.Add(agilidade);
-            this.defesas.Add(resistMagica);
-            defesas.Add(resistArmadura);
+            criaLista();
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/paladin.jpg";
         }
 
+        private void criaLista()
+        {
+            this.defesas = new List<int>();
+            this.acoes = new List<string>();
+        }
 
         public string CaminhoImagem
         {
@@ -39,24 +40,29 @@ namespace JogoRPG
 
         public Paladino()
         {
+            setVidaManaMaxima();
             atributos();
-
             constroiArmas();
             constroiMagia();
+            criaLista();
             incluiLista();
         }
 
         private void incluiLista()
         {
-            Ataques.Add(flamaGelada.ToString());
-            ataques.Add(tridenteSagrado.ToString());
-            ataques.Add(tempestade.ToString());
-            ataques.Add(besta.ToString());
+            this.acoes.Add(flamaGelada.ToString());
+            this.acoes.Add(tridenteSagrado.ToString());
+            this.acoes.Add(tempestade.ToString());
+            this.acoes.Add(besta.ToString());
+            this.acoes.Add(pocaoVida.ToString());
+            this.defesas.Add(agilidade);
+            this.defesas.Add(resistMagica);
+            this.defesas.Add(resistArmadura);
         }
 
         public override void constroiMagia()
         {
-            magiaVida = new PocaoVida();
+            pocaoVida = new PocaoVida();
             flamaGelada = new FlamaGelada();
             tempestade = new Tempestade();
         }
@@ -74,22 +80,23 @@ namespace JogoRPG
                     break;
                 case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "TridenteSagrado":personagemdefesa.defesa(tridenteSagrado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "TridenteSagrado":personagemdefesa.defesa(tridenteSagrado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                    break;
+                case "PocaoVida":
+                    cura(pocaoVida);
                     break;
             }
-
         }
-
-        public void cura()
-        {
-            this.Vida += magiaVida.executaCura(ref this.Mana,this.forcaMagica);
-        }
-
         public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)
         {
             throw new NotImplementedException();
+        }
+
+        public void cura(Magia e)
+        {
+            this.Vida += e.executaCura(ref this.Mana, this.forcaMagica, this, getVidaMaxima());
         }
     }
 }

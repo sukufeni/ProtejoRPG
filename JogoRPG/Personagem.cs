@@ -9,6 +9,8 @@ namespace JogoRPG
         protected int dano;
         public int Mana;
         protected int forcaFisica;
+        private int vidaMaxima;
+        private int manaMaxima;
         protected int forcaMagica;
         protected int resistArmadura;
         protected int resistMagica;
@@ -20,16 +22,29 @@ namespace JogoRPG
         protected bool ataqueespecial;
         internal List<int> defesas;
         protected List<Magia> Curas;
-        protected List<string> ataques;
+        protected List<string> acoes;
+        Random r = new Random();
 
-        public List<string> Ataques
+        public List<string> Acoes
         {
             get
             {
-                return ataques;
+                return acoes;
             }
         }
-
+        public void setVidaManaMaxima()
+        {
+            this.vidaMaxima = Vida;
+            this.manaMaxima = Mana;
+        }
+        public int getVidaMaxima()
+        {
+            return this.vidaMaxima;
+        }
+        public int getManaMaxma()
+        {
+            return this.manaMaxima;
+        }
         public virtual string atributosPersonagem()
         {
             return "vida:" + Vida + " - " + "mana: " + Mana + "\n" + "força-fisica: " + forcaFisica + " - " + "força-magica: " + forcaMagica + "\n" + "resistencia-armadura: " + resistArmadura + " - " + "resistencia-magica: " + resistMagica;
@@ -37,7 +52,6 @@ namespace JogoRPG
         public abstract void constroiMagia();
         public abstract void constroiArmas();// mudar para inicializar a arma mais fraca
         public abstract void ataque(string tipoAtaque, Personagem personagemDefesa);
-
 
         Arma IEmetodos.constroiArmas()
         {
@@ -48,11 +62,15 @@ namespace JogoRPG
             throw new NotImplementedException();
         }
 
-        public void rodada(bool magia, ref int mana)
+        public void somaManaRodada(ref int mana)
         {
-            if (magia != false) mana += 10;
+            if(mana+10<=getManaMaxma())
+            mana += 10;
+            else
+            {
+                mana += getManaMaxma() - mana;
+            }
         }
-
         public virtual void defesa(int danoAtaque, Personagem personagemDefesa)
         {
             try
@@ -61,8 +79,7 @@ namespace JogoRPG
                 {
                     if (danoAtaque > 0)
                     {
-                        personagemDefesa.defesas.Sort();
-                        int defesa = defesas[0];
+                        int defesa = r.Next(personagemDefesa.defesas.Count);
                         personagemDefesa.Vida -= danoAtaque - defesa;
                     }
                 }
@@ -73,7 +90,7 @@ namespace JogoRPG
             }
             catch (NullReferenceException e)
             {
-                throw e;
+                throw new NullReferenceException("erro ao defender!", e);
             }
         }
         public abstract int ataqueEspecial(ref int vidaAtacado, string tipoAtaque);

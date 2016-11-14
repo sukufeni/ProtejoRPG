@@ -14,13 +14,20 @@
             else
             {
                 mana = 0;
-                return 0;
+                return atacado.Vida;
             }
         }
-        public virtual int executaCura(ref int mana, int forcaMagica)
+        public virtual int executaCura(ref int mana, int forcaMagica, Personagem vida,int vidaMaxima)
         {
-            mana -= gastoMana;
-            return valorMagia + forcaMagica;
+            if (valorMagia + forcaMagica +vida.Vida <=vidaMaxima)
+            {
+                mana -= gastoMana;
+                return valorMagia + forcaMagica;
+            }
+            else
+            {
+                throw new System.Exception("magia irá exceder a vida maxima!"); //criar metodo que retorna a const de vida maxima do personagem passado 
+            }
         }
     }
 }

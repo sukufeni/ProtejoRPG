@@ -18,13 +18,15 @@ namespace JogoRPG
             resistArmadura = 90;
             agilidade = 50;
             resistMagica = 20;
-            this.defesas = new List<int>();
-            this.ataques = new List<string>();
-            this.defesas.Add(agilidade);
-            this.defesas.Add(resistMagica);
-            defesas.Add(resistArmadura);
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/animal.png";
         }
+
+        private void criaListas()
+        {
+            this.defesas = new List<int>();
+            this.acoes = new List<string>();
+        }
+
         public string CaminhoImagem
         {
             get
@@ -37,8 +39,18 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
-            this.ataques.Add(bio.ToString());
-            this.ataques.Add(garraLetal.ToString());
+            criaListas();
+            incluiListas();
+            setVidaManaMaxima();
+        }
+
+        private void incluiListas()
+        {
+            this.acoes.Add(bio.ToString());
+            this.acoes.Add(garraLetal.ToString());
+            this.defesas.Add(agilidade);
+            this.defesas.Add(resistMagica);
+            this.defesas.Add(resistArmadura);
         }
 
         public override void constroiMagia()
@@ -54,7 +66,11 @@ namespace JogoRPG
         public override void ataque(string tipoAtaque, Personagem personagemdefesa)
         {   
             if (tipoAtaque == "Bio")personagemdefesa.defesa(bio.executaMagia(ref this.Mana, this.forcaMagica,personagemdefesa), personagemdefesa);
-            else personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+            else
+            {
+                personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa), personagemdefesa);
+                somaManaRodada(ref this.Mana);
+            }
         }
 
         public override void defesa(int danoAtaque, Personagem personagemDefesa)

@@ -109,7 +109,7 @@
             this.btnJogador1Atk.Name = "btnJogador1Atk";
             this.btnJogador1Atk.Size = new System.Drawing.Size(75, 23);
             this.btnJogador1Atk.TabIndex = 9;
-            this.btnJogador1Atk.Text = "Atacar";
+            this.btnJogador1Atk.Text = "Ação";
             this.btnJogador1Atk.UseVisualStyleBackColor = true;
             this.btnJogador1Atk.Click += new System.EventHandler(this.btnAtaque_Click);
             // 
@@ -130,7 +130,7 @@
             this.btnJogador2Atk.Name = "btnJogador2Atk";
             this.btnJogador2Atk.Size = new System.Drawing.Size(75, 23);
             this.btnJogador2Atk.TabIndex = 13;
-            this.btnJogador2Atk.Text = "Atacar";
+            this.btnJogador2Atk.Text = "Ação";
             this.btnJogador2Atk.UseVisualStyleBackColor = true;
             this.btnJogador2Atk.Click += new System.EventHandler(this.btnJogador2Atk_Click);
             // 

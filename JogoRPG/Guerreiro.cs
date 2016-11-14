@@ -18,13 +18,14 @@ namespace JogoRPG
             forcaMagica = 20;
             resistArmadura = 80;
             resistMagica = 20;
-            agilidade = 50;
-            this.defesas = new List<int>();
-            this.defesas.Add(agilidade);
-            this.defesas.Add(resistMagica);
-            this.ataques = new List<string>();
-            defesas.Add(resistArmadura);
+            agilidade = 50;           
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/guerreiro.jpg";
+        }
+
+        private void criaLista()
+        {
+            this.defesas = new List<int>();
+            this.acoes = new List<string>();
         }
 
         public string CaminhoImagem
@@ -40,9 +41,19 @@ namespace JogoRPG
             atributos();
             constroiArmas();
             constroiMagia();
-            ataques.Add(tempestade.ToString());
-            ataques.Add(espada.ToString());
-            ataques.Add(porrete.ToString());
+            criaLista();
+            incluiLista();
+            setVidaManaMaxima();
+        }
+
+        private void incluiLista()
+        {
+            this.acoes.Add(tempestade.ToString());
+            this.acoes.Add(espada.ToString());
+            this.acoes.Add(porrete.ToString());
+            this.defesas.Add(agilidade);
+            this.defesas.Add(resistMagica);
+            this.defesas.Add(resistArmadura);
         }
 
         public override void constroiMagia()
@@ -62,9 +73,9 @@ namespace JogoRPG
             {
                 case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "EspadaBarroca":personagemdefesa.defesa(espada.executaAtaque(this.forcaFisica,personagemdefesa),personagemdefesa);
+                case "EspadaBarroca":personagemdefesa.defesa(espada.executaAtaque(this.forcaFisica,personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa);
+                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
             }
         }
