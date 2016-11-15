@@ -53,14 +53,14 @@ namespace JogoRPG
 
         private void incluiLista()
         {
+            acoes.Add(cajado.ToString());
+            acoes.Add(sagrado.ToString());
             acoes.Add(bio.ToString());
             acoes.Add(pocaVida.ToString());
             acoes.Add(magiacura.ToString());
             acoes.Add(gelada.ToString());
             acoes.Add(intoxicacao.ToString());
             acoes.Add(tempestade.ToString());
-            acoes.Add(sagrado.ToString());
-            acoes.Add(cajado.ToString());
             defesas.Add(resistArmadura);
             defesas.Add(resistMagica);
             defesas.Add(agilidade);
@@ -88,7 +88,7 @@ namespace JogoRPG
 
         public override void ataque(string tipoAtaque, Personagem personagemDefesa)
         {
-            switch (tipoAtaque) // segregar para receber somente o tipo ataque? funcionamento igual ao do metodo magia implementado acima
+            switch (tipoAtaque)
             {
                 case "Bio":
                     personagemDefesa.defesa(bio.executaMagia(ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);

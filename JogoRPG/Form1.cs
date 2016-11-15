@@ -24,29 +24,45 @@ namespace JogoRPG
             jogadores.Add(Jogador1);
             jogadores.Add(jogador2);
             criaComboBox();
+            habilitaCb();
         }
         private void criaComboBox()
         {
             for (int x = 0; x <= jogadores[0].Personagens.Count - 1; x++)
             {
-                cbJogador1.Items.Add(jogadores[0].Personagens[x]);
+                cbPersonagemJogador1.Items.Add(jogadores[0].Personagens[x]);
             }
             for (int x = 0; x <= jogadores[1].Personagens.Count - 1; x++)
             {
-                cbJogador2.Items.Add(jogadores[1].Personagens[x]);
+                cbPersonagemJogador2.Items.Add(jogadores[1].Personagens[x]);
             }
         }
         private void ataque(string entrada)
         {
             this.ataqueAtual = entrada.Remove(0, 8);
         }
+
+        private void habilitaCb()
+        {
+            if (!Jogador.rodadaAtual())
+            {
+                cbAcoesJogador1.Enabled = true;
+                cbAcoesJogador2.Enabled = false;
+            }
+            else
+            {
+                cbAcoesJogador1.Enabled = false;
+                cbAcoesJogador2.Enabled = true;
+            }
+        }
+
         private void btnAtaque_Click(object sender, EventArgs e)
         {
            try
            {
-                cbAtk1();
-                ataque(cbAtkJ1.SelectedItem.ToString());
-                if (!Jogador.executaRodada())
+                selecionaPersonagem1();
+                ataque(cbAcoesJogador1.SelectedItem.ToString());
+                if (!Jogador.rodadaAtual())
                 {
                     jogadores[0].ataque(jogadores[0].personagemAtacante, jogadores[1].personagemAtacado, ataqueAtual);
                     a = jogadores[0].caminhoatacante(out atributos2, jogadores[0].personagemAtacante);
@@ -57,21 +73,21 @@ namespace JogoRPG
            }
            catch (NullReferenceException)
            {
-            
                 throw new NullReferenceException(excecao);
            }
            finally
            {
-               cbJogador1.Focus();
+                cbPersonagemJogador1.Focus();
+                habilitaCb();
            }
         }
         private void btnJogador2Atk_Click(object sender, EventArgs e)
         {
             try
             {
-                cbAtk2();
-                ataque(cbAtkJ2.SelectedItem.ToString());
-                if (Jogador.executaRodada())
+                selecionaPersonagem2();
+                ataque(cbAcoesJogador2.SelectedItem.ToString());
+                if (Jogador.rodadaAtual())
                 {
                     jogadores[1].ataque(jogadores[1].personagemAtacante, jogadores[0].personagemAtacado, ataqueAtual);
                     a = jogadores[1].caminhoatacante(out atributos2, jogadores[1].personagemAtacante);
@@ -82,19 +98,19 @@ namespace JogoRPG
             }
             catch (NullReferenceException)
             {
-
                 throw new NullReferenceException(excecao);
             }
             finally
             {
-                cbJogador1.Focus();
+                cbPersonagemJogador2.Focus();
+                habilitaCb();
             }
         }
-        private void cbAtk1()
+        private void selecionaPersonagem1()
         {
             foreach (Personagem a in jogadores[0].Personagens)
             {
-                Personagem teste = (Personagem)cbJogador1.SelectedItem;
+                Personagem teste = (Personagem)cbPersonagemJogador1.SelectedItem;
                 if (teste == a)
                 {
                     jogadores[0].personagemAtacante = teste;
@@ -102,18 +118,18 @@ namespace JogoRPG
             }
             foreach (Personagem a in jogadores[1].Personagens)
             {
-                Personagem teste = (Personagem)cbJogador2.SelectedItem;
+                Personagem teste = (Personagem)cbPersonagemJogador2.SelectedItem;
                 if (teste == a)
                 {
                     jogadores[1].personagemAtacado = teste;
                 }
             }
         }
-        private void cbAtk2()
+        private void selecionaPersonagem2()
         {
             foreach (Personagem a in jogadores[1].Personagens)
             {
-                Personagem teste = (Personagem)cbJogador2.SelectedItem;
+                Personagem teste = (Personagem)cbPersonagemJogador2.SelectedItem;
                 if (teste == a)
                 {
                     jogadores[1].personagemAtacante = teste;
@@ -122,7 +138,7 @@ namespace JogoRPG
 
             foreach (Personagem a in jogadores[0].Personagens)
             {
-                Personagem teste = (Personagem)cbJogador1.SelectedItem;
+                Personagem teste = (Personagem)cbPersonagemJogador1.SelectedItem;
                 if (teste == a)
                 {
                     jogadores[0].personagemAtacado = teste;
@@ -137,23 +153,25 @@ namespace JogoRPG
             imagemPersonagem2.Height = imagem.Height;
             lbAtributos.Text = v;
         }
-        private void cbJogador2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cbAtk2();
-            cbAtkJ2.Items.Clear();
-            for (int x = 0; x < jogadores[1].personagemAtacante.Acoes.Count; x++)
-            {
-                cbAtkJ2.Items.Add(jogadores[1].personagemAtacante.Acoes[x]);
-            }
-        }
         private void cbJogador1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbAtk1();
-            cbAtkJ1.Items.Clear();
+            selecionaPersonagem1();
+            cbAcoesJogador1.Items.Clear();
             for (int x = 0; x < jogadores[0].personagemAtacante.Acoes.Count;x++)
             {
-                cbAtkJ1.Items.Add(jogadores[0].personagemAtacante.Acoes[x]);
+                cbAcoesJogador1.Items.Add(jogadores[0].personagemAtacante.Acoes[x]);
             }
+            cbAcoesJogador1.SelectedIndex = 0;
+        }
+        private void cbJogador2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selecionaPersonagem2();
+            cbAcoesJogador2.Items.Clear();
+            for (int x = 0; x < jogadores[1].personagemAtacante.Acoes.Count; x++)
+            {
+                cbAcoesJogador2.Items.Add(jogadores[1].personagemAtacante.Acoes[x]);
+            }
+            cbAcoesJogador2.SelectedIndex = 0;
         }
         private void imagemAtacante(string caminho,string atributosPersonagem)
         {

@@ -50,10 +50,10 @@ namespace JogoRPG
 
         private void incluiLista()
         {
-            this.acoes.Add(flamaGelada.ToString());
             this.acoes.Add(tridenteSagrado.ToString());
-            this.acoes.Add(tempestade.ToString());
             this.acoes.Add(besta.ToString());
+            this.acoes.Add(flamaGelada.ToString());
+            this.acoes.Add(tempestade.ToString());
             this.acoes.Add(pocaoVida.ToString());
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);

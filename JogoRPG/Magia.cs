@@ -26,7 +26,7 @@
             }
             else
             {
-                throw new System.Exception("magia irá exceder a vida maxima!"); //criar metodo que retorna a const de vida maxima do personagem passado 
+                throw new System.Exception("magia irá exceder a vida maxima!");
             }
         }
     }

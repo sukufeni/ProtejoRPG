@@ -45,23 +45,20 @@ namespace JogoRPG
             incluiLista();
             setVidaManaMaxima();
         }
-
         private void incluiLista()
         {
-            this.acoes.Add(intoxicacao.ToString());
+            this.acoes.Add(cajado.ToString());
             this.acoes.Add(garraLetal.ToString());
             this.acoes.Add(porrete.ToString());
-            this.acoes.Add(cajado.ToString());
+            this.acoes.Add(intoxicacao.ToString());
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
             this.defesas.Add(resistArmadura);
         }
-
         public override void constroiMagia()
         {
              intoxicacao = new Intoxicacao();
         }
-
         public override void constroiArmas()
         {
             garraLetal = new GarraLetal();

@@ -43,8 +43,8 @@ namespace JogoRPG
         public Jogador()
         {
             criaPersonagens();
+            adicionaPersonagens();
         }
-
         private void criaPersonagens()
         {
             this.animal = new Animal();
@@ -56,6 +56,10 @@ namespace JogoRPG
             this.paladino = new Paladino();
             this.mago = new Mago();
             this.personagens = new List<Personagem>();
+        }
+
+        private void adicionaPersonagens()
+        {
             Personagens.Add(animal);
             Personagens.Add(dragao);
             Personagens.Add(zumbi);
@@ -65,12 +69,13 @@ namespace JogoRPG
             Personagens.Add(paladino);
             Personagens.Add(mago);
         }
+
         public void ataque(Personagem atacante, Personagem atacado, string ataque)
         {
             atacante.ataque(ataque, atacado);
             ContRodada = 1;
         }
-        public static bool executaRodada()
+        public static bool rodadaAtual()
         {
             if (ContRodada % 2 == 0)
             {

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.cbJogador1 = new System.Windows.Forms.ComboBox();
+            this.cbPersonagemJogador1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.imagemPersonagem1 = new System.Windows.Forms.PictureBox();
             this.btnFechar = new System.Windows.Forms.Button();
@@ -39,28 +39,28 @@
             this.imagemPersonagem2 = new System.Windows.Forms.PictureBox();
             this.btnJogador2Atk = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbJogador2 = new System.Windows.Forms.ComboBox();
+            this.cbPersonagemJogador2 = new System.Windows.Forms.ComboBox();
             this.lbAtributos2 = new System.Windows.Forms.Label();
-            this.cbAtkJ1 = new System.Windows.Forms.ComboBox();
+            this.cbAcoesJogador1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.cbAtkJ2 = new System.Windows.Forms.ComboBox();
+            this.cbAcoesJogador2 = new System.Windows.Forms.ComboBox();
             this.jogadorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.imagemPersonagem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemPersonagem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jogadorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // cbJogador1
+            // cbPersonagemJogador1
             // 
-            this.cbJogador1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbJogador1.FormattingEnabled = true;
-            this.cbJogador1.Location = new System.Drawing.Point(12, 22);
-            this.cbJogador1.Name = "cbJogador1";
-            this.cbJogador1.Size = new System.Drawing.Size(121, 21);
-            this.cbJogador1.Sorted = true;
-            this.cbJogador1.TabIndex = 1;
-            this.cbJogador1.SelectedIndexChanged += new System.EventHandler(this.cbJogador1_SelectedIndexChanged);
+            this.cbPersonagemJogador1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPersonagemJogador1.FormattingEnabled = true;
+            this.cbPersonagemJogador1.Location = new System.Drawing.Point(12, 22);
+            this.cbPersonagemJogador1.Name = "cbPersonagemJogador1";
+            this.cbPersonagemJogador1.Size = new System.Drawing.Size(121, 21);
+            this.cbPersonagemJogador1.Sorted = true;
+            this.cbPersonagemJogador1.TabIndex = 1;
+            this.cbPersonagemJogador1.SelectedIndexChanged += new System.EventHandler(this.cbJogador1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -144,17 +144,17 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Jogador-2";
             // 
-            // cbJogador2
+            // cbPersonagemJogador2
             // 
-            this.cbJogador2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbJogador2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbJogador2.FormattingEnabled = true;
-            this.cbJogador2.Location = new System.Drawing.Point(730, 22);
-            this.cbJogador2.Name = "cbJogador2";
-            this.cbJogador2.Size = new System.Drawing.Size(121, 21);
-            this.cbJogador2.Sorted = true;
-            this.cbJogador2.TabIndex = 11;
-            this.cbJogador2.SelectedIndexChanged += new System.EventHandler(this.cbJogador2_SelectedIndexChanged);
+            this.cbPersonagemJogador2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbPersonagemJogador2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPersonagemJogador2.FormattingEnabled = true;
+            this.cbPersonagemJogador2.Location = new System.Drawing.Point(730, 22);
+            this.cbPersonagemJogador2.Name = "cbPersonagemJogador2";
+            this.cbPersonagemJogador2.Size = new System.Drawing.Size(121, 21);
+            this.cbPersonagemJogador2.Sorted = true;
+            this.cbPersonagemJogador2.TabIndex = 11;
+            this.cbPersonagemJogador2.SelectedIndexChanged += new System.EventHandler(this.cbJogador2_SelectedIndexChanged);
             // 
             // lbAtributos2
             // 
@@ -166,14 +166,14 @@
             this.lbAtributos2.TabIndex = 14;
             this.lbAtributos2.Text = "lbAtributos2";
             // 
-            // cbAtkJ1
+            // cbAcoesJogador1
             // 
-            this.cbAtkJ1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAtkJ1.FormattingEnabled = true;
-            this.cbAtkJ1.Location = new System.Drawing.Point(139, 22);
-            this.cbAtkJ1.Name = "cbAtkJ1";
-            this.cbAtkJ1.Size = new System.Drawing.Size(121, 21);
-            this.cbAtkJ1.TabIndex = 15;
+            this.cbAcoesJogador1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAcoesJogador1.FormattingEnabled = true;
+            this.cbAcoesJogador1.Location = new System.Drawing.Point(139, 22);
+            this.cbAcoesJogador1.Name = "cbAcoesJogador1";
+            this.cbAcoesJogador1.Size = new System.Drawing.Size(121, 21);
+            this.cbAcoesJogador1.TabIndex = 15;
             // 
             // label3
             // 
@@ -194,15 +194,15 @@
             this.label4.TabIndex = 18;
             this.label4.Text = "Ações";
             // 
-            // cbAtkJ2
+            // cbAcoesJogador2
             // 
-            this.cbAtkJ2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbAtkJ2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAtkJ2.FormattingEnabled = true;
-            this.cbAtkJ2.Location = new System.Drawing.Point(857, 22);
-            this.cbAtkJ2.Name = "cbAtkJ2";
-            this.cbAtkJ2.Size = new System.Drawing.Size(121, 21);
-            this.cbAtkJ2.TabIndex = 17;
+            this.cbAcoesJogador2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAcoesJogador2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAcoesJogador2.FormattingEnabled = true;
+            this.cbAcoesJogador2.Location = new System.Drawing.Point(857, 22);
+            this.cbAcoesJogador2.Name = "cbAcoesJogador2";
+            this.cbAcoesJogador2.Size = new System.Drawing.Size(121, 21);
+            this.cbAcoesJogador2.TabIndex = 17;
             // 
             // jogadorBindingSource
             // 
@@ -217,20 +217,20 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1089, 385);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.cbAtkJ2);
+            this.Controls.Add(this.cbAcoesJogador2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbAtkJ1);
+            this.Controls.Add(this.cbAcoesJogador1);
             this.Controls.Add(this.lbAtributos2);
             this.Controls.Add(this.btnJogador2Atk);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbJogador2);
+            this.Controls.Add(this.cbPersonagemJogador2);
             this.Controls.Add(this.imagemPersonagem2);
             this.Controls.Add(this.btnJogador1Atk);
             this.Controls.Add(this.lbAtributos);
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.imagemPersonagem1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cbJogador1);
+            this.Controls.Add(this.cbPersonagemJogador1);
             this.Name = "Form1";
             this.Text = "JOGO-RPG";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -245,7 +245,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cbJogador1;
+        private System.Windows.Forms.ComboBox cbPersonagemJogador1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox imagemPersonagem1;
         private System.Windows.Forms.Button btnFechar;
@@ -254,12 +254,12 @@
         private System.Windows.Forms.PictureBox imagemPersonagem2;
         private System.Windows.Forms.Button btnJogador2Atk;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbJogador2;
+        private System.Windows.Forms.ComboBox cbPersonagemJogador2;
         private System.Windows.Forms.Label lbAtributos2;
-        private System.Windows.Forms.ComboBox cbAtkJ1;
+        private System.Windows.Forms.ComboBox cbAcoesJogador1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbAtkJ2;
+        private System.Windows.Forms.ComboBox cbAcoesJogador2;
         private System.Windows.Forms.BindingSource jogadorBindingSource;
     }
 }

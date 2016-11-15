@@ -49,10 +49,10 @@ namespace JogoRPG
 
         private void incluiLista()
         {
+            acoes.Add(cajado.ToString());
             acoes.Add(intoxicacao.ToString());
             acoes.Add(tempestade.ToString());
             acoes.Add(porrete.ToString());
-            acoes.Add(cajado.ToString());
             acoes.Add(besta.ToString());
             acoes.Add(esfera.ToString());
             defesas.Add(resistArmadura);

@@ -45,8 +45,8 @@ namespace JogoRPG
 
         private void incluiLista()
         {
-            this.acoes.Add(halitoFogo.ToString());
             this.acoes.Add(garraLetal.ToString());
+            this.acoes.Add(halitoFogo.ToString());
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
             this.defesas.Add(resistArmadura);

@@ -46,8 +46,8 @@ namespace JogoRPG
 
         private void incluiListas()
         {
-            this.acoes.Add(bio.ToString());
             this.acoes.Add(garraLetal.ToString());
+            this.acoes.Add(bio.ToString());
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
             this.defesas.Add(resistArmadura);
