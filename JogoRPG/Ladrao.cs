@@ -76,17 +76,17 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "Intoxicacao":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "Intoxicacao":personagemdefesa.defesa(intoxicacao.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana,this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(this.Vida, ref this.Mana,this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "EsferaAtaque":personagemdefesa.defesa(esfera.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                case "EsferaAtaque":personagemdefesa.defesa(esfera.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
             }
         }

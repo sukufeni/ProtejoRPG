@@ -76,13 +76,13 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "FlamaGelada":personagemdefesa.defesa(flamaGelada.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "FlamaGelada":personagemdefesa.defesa(flamaGelada.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "TridenteSagrado":personagemdefesa.defesa(tridenteSagrado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                case "TridenteSagrado":personagemdefesa.defesa(tridenteSagrado.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
                 case "PocaoVida":
                     cura(pocaoVida);
@@ -96,7 +96,7 @@ namespace JogoRPG
 
         public void cura(Magia e)
         {
-            this.Vida += e.executaCura(ref this.Mana, this.forcaMagica, this, getVidaMaxima());
+            this.Vida += e.executaCura(this.Vida, ref this.Mana, this.forcaMagica, this, getVidaMaxima());
         }
     }
 }

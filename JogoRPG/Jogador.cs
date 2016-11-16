@@ -23,19 +23,6 @@ namespace JogoRPG
             }
         }
 
-        public static int ContRodada
-        {
-            get
-            {
-                return contRodada;
-            }
-
-            set
-            {
-                contRodada ++;
-            }
-        }
-
         private List<Personagem> personagens;
         public int vida;
         public Personagem personagemAtacante;
@@ -73,11 +60,15 @@ namespace JogoRPG
         public void ataque(Personagem atacante, Personagem atacado, string ataque)
         {
             atacante.ataque(ataque, atacado);
-            ContRodada = 1;
+            somaRodada();
+        }
+        public static void somaRodada()
+        {
+            contRodada++;
         }
         public static bool rodadaAtual()
         {
-            if (ContRodada % 2 == 0)
+            if (contRodada % 2 == 0)
             {
                 return true;
             }

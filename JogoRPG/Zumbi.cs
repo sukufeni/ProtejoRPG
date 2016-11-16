@@ -70,13 +70,13 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "Intoxicacao":personagemdefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa), personagemdefesa);
+                case "Intoxicacao":personagemdefesa.defesa(intoxicacao.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa), personagemdefesa);
                     break;
-                case "GarraLetal":personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa), personagemdefesa); somaManaRodada(ref this.Mana);
+                case "GarraLetal":personagemdefesa.defesa(garraLetal.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa), personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
             }
         }

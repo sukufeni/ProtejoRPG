@@ -71,11 +71,11 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
+                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
                     break;
-                case "EspadaBarroca":personagemdefesa.defesa(espada.executaAtaque(this.forcaFisica,personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                case "EspadaBarroca":personagemdefesa.defesa(espada.executaAtaque(this.Vida, this.forcaFisica,personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
-                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
+                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
                     break;
             }
         }

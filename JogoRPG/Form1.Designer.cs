@@ -174,6 +174,7 @@
             this.cbAcoesJogador1.Name = "cbAcoesJogador1";
             this.cbAcoesJogador1.Size = new System.Drawing.Size(121, 21);
             this.cbAcoesJogador1.TabIndex = 15;
+            this.cbAcoesJogador1.SelectedIndexChanged += new System.EventHandler(this.cbAcoesJogador1_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -203,6 +204,7 @@
             this.cbAcoesJogador2.Name = "cbAcoesJogador2";
             this.cbAcoesJogador2.Size = new System.Drawing.Size(121, 21);
             this.cbAcoesJogador2.TabIndex = 17;
+            this.cbAcoesJogador2.SelectedIndexChanged += new System.EventHandler(this.cbAcoesJogador2_SelectedIndexChanged);
             // 
             // jogadorBindingSource
             // 

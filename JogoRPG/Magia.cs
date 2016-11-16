@@ -4,22 +4,30 @@
     {
         protected int valorMagia;
         public int gastoMana { get; protected set; }
-        public virtual int executaMagia(ref int mana, int forcaMagica, Personagem atacado)
+        public virtual int executaMagia(int vidaAtacante,ref int mana, int forcaMagica, Personagem atacado)
         {
-            if (mana >= gastoMana && atacado.Vida >= (valorMagia+forcaMagica))
+
+            if (vidaAtacante > 0)
             {
-                mana -= gastoMana;
-                return valorMagia + forcaMagica;
+                if (mana >= gastoMana && atacado.Vida >= (valorMagia + forcaMagica))
+                {
+                    mana -= gastoMana;
+                    return valorMagia + forcaMagica;
+                }
+                else
+                {
+                    mana = 0;
+                    return atacado.Vida;
+                }
             }
             else
             {
-                mana = 0;
-                return atacado.Vida;
+                throw new System.Exception("atacante morto!");
             }
         }
-        public virtual int executaCura(ref int mana, int forcaMagica, Personagem vida,int vidaMaxima)
+        public virtual int executaCura(int vidaAtacante,ref int mana, int forcaMagica, Personagem vida,int vidaMaxima)
         {
-            if (valorMagia + forcaMagica +vida.Vida <=vidaMaxima)
+            if (valorMagia + forcaMagica +vida.Vida <=vidaMaxima && vidaAtacante > 0)
             {
                 mana -= gastoMana;
                 return valorMagia + forcaMagica;

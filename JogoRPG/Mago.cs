@@ -83,7 +83,7 @@ namespace JogoRPG
         }
         public void cura(Magia e)
         {
-                this.Vida += e.executaCura(ref this.Mana, this.forcaMagica,this,getVidaMaxima());
+                this.Vida += e.executaCura(this.Vida,ref this.Mana, this.forcaMagica,this,getVidaMaxima());
         }
 
         public override void ataque(string tipoAtaque, Personagem personagemDefesa)
@@ -91,20 +91,20 @@ namespace JogoRPG
             switch (tipoAtaque)
             {
                 case "Bio":
-                    personagemDefesa.defesa(bio.executaMagia(ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
+                    personagemDefesa.defesa(bio.executaMagia(this.Vida, ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
                     break;
-                case "FlamaGelada":personagemDefesa.defesa(gelada.executaMagia(ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
+                case "FlamaGelada":personagemDefesa.defesa(gelada.executaMagia(this.Vida, ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
                     break;
                 case "Intoxicacao":
-                    personagemDefesa.defesa(intoxicacao.executaMagia(ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
+                    personagemDefesa.defesa(intoxicacao.executaMagia(this.Vida, ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
                     break;
-                case "Tempestade ":personagemDefesa.defesa(tempestade.executaMagia(ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
+                case "Tempestade ":personagemDefesa.defesa(tempestade.executaMagia(this.Vida, ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
                     break;
                 case "TridenteSagrado":
-                    personagemDefesa.defesa(sagrado.executaAtaque(this.forcaFisica, personagemDefesa),personagemDefesa); somaManaRodada(ref this.Mana);
+                    personagemDefesa.defesa(sagrado.executaAtaque(this.Vida, this.forcaFisica, personagemDefesa),personagemDefesa); somaManaRodada(ref this.Mana);
                     break;
                 case "Cajado":
-                    personagemDefesa.defesa(cajado.executaAtaque(this.forcaFisica, personagemDefesa),personagemDefesa); somaManaRodada(ref this.Mana);
+                    personagemDefesa.defesa(cajado.executaAtaque(this.Vida, this.forcaFisica, personagemDefesa),personagemDefesa); somaManaRodada(ref this.Mana);
                     break;
                 case "Cura":cura(magiacura);
                     break;

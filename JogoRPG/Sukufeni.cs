@@ -24,11 +24,11 @@ namespace JogoRPG
         {
             switch (tipoAtaque)
             {
-                case "Besta": besta.executaAtaque(this.forcaFisica, personagemDefesa);
+                case "Besta": besta.executaAtaque(this.Vida, this.forcaFisica, personagemDefesa);
                     break;
-                case "GarraLetal": garra.executaAtaque(this.forcaFisica, personagemDefesa);
+                case "GarraLetal": garra.executaAtaque(this.Vida, this.forcaFisica, personagemDefesa);
                     break;
-                default:intoxicacao.executaMagia(ref this.Mana, this.forcaMagica, personagemDefesa);
+                default:intoxicacao.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemDefesa);
                     break;
             }
         }
@@ -51,7 +51,7 @@ namespace JogoRPG
 
         public void cura(Magia e)
         {
-            this.Vida = e.executaCura(ref this.Mana, this.forcaMagica,this,2500);
+            this.Vida = e.executaCura(this.Vida, ref this.Mana, this.forcaMagica,this,2500);
         }
     }
 }

@@ -64,12 +64,8 @@ namespace JogoRPG
 
         public void somaManaRodada(ref int mana)
         {
-            if(mana+10<=getManaMaxma())
-            mana += 10;
-            else
-            {
-                mana += getManaMaxma() - mana;
-            }
+            if(mana+10<=getManaMaxma())mana += 10;
+            else mana += getManaMaxma() - mana;
         }
         public virtual void defesa(int danoAtaque, Personagem personagemDefesa)
         {

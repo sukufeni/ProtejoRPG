@@ -10,7 +10,6 @@ namespace JogoRPG
 
         private void atributos()
         {
-
             Vida = 3200;
             Mana = 30;
             forcaFisica = 80;
@@ -20,13 +19,6 @@ namespace JogoRPG
             resistMagica = 20;
             caminhoImagem = "C:/Users/bruno/Google Drive/PUC/22016/POO/TI-RPG/animal.png";
         }
-
-        private void criaListas()
-        {
-            this.defesas = new List<int>();
-            this.acoes = new List<string>();
-        }
-
         public string CaminhoImagem
         {
             get
@@ -43,6 +35,12 @@ namespace JogoRPG
             incluiListas();
             setVidaManaMaxima();
         }
+        private void criaListas()
+        {
+            this.defesas = new List<int>();
+            this.acoes = new List<string>();
+        }
+
 
         private void incluiListas()
         {
@@ -65,10 +63,10 @@ namespace JogoRPG
         
         public override void ataque(string tipoAtaque, Personagem personagemdefesa)
         {   
-            if (tipoAtaque == "Bio")personagemdefesa.defesa(bio.executaMagia(ref this.Mana, this.forcaMagica,personagemdefesa), personagemdefesa);
+            if (tipoAtaque == "Bio")personagemdefesa.defesa(bio.executaMagia(this.Vida, ref this.Mana, this.forcaMagica,personagemdefesa), personagemdefesa);
             else
             {
-                personagemdefesa.defesa(garraLetal.executaAtaque(this.forcaFisica, personagemdefesa), personagemdefesa);
+                personagemdefesa.defesa(garraLetal.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa), personagemdefesa);
                 somaManaRodada(ref this.Mana);
             }
         }
