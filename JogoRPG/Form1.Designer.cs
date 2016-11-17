@@ -45,6 +45,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cbAcoesJogador2 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblRodadaJogador1 = new System.Windows.Forms.Label();
+            this.lbRodadaJogador2 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnReiniciar = new System.Windows.Forms.Button();
             this.jogadorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.imagemPersonagem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemPersonagem2)).BeginInit();
@@ -81,14 +86,11 @@
             // 
             // btnFechar
             // 
-            this.btnFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFechar.AutoSize = true;
+            this.btnFechar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnFechar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnFechar.Location = new System.Drawing.Point(515, 41);
+            this.btnFechar.Location = new System.Drawing.Point(513, 40);
             this.btnFechar.Name = "btnFechar";
-            this.btnFechar.Size = new System.Drawing.Size(50, 23);
+            this.btnFechar.Size = new System.Drawing.Size(60, 25);
             this.btnFechar.TabIndex = 6;
             this.btnFechar.Text = "Fechar";
             this.btnFechar.UseVisualStyleBackColor = true;
@@ -206,6 +208,54 @@
             this.cbAcoesJogador2.TabIndex = 17;
             this.cbAcoesJogador2.SelectedIndexChanged += new System.EventHandler(this.cbAcoesJogador2_SelectedIndexChanged);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(138, 46);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Rodada";
+            // 
+            // lblRodadaJogador1
+            // 
+            this.lblRodadaJogador1.AutoSize = true;
+            this.lblRodadaJogador1.Location = new System.Drawing.Point(136, 59);
+            this.lblRodadaJogador1.Name = "lblRodadaJogador1";
+            this.lblRodadaJogador1.Size = new System.Drawing.Size(0, 13);
+            this.lblRodadaJogador1.TabIndex = 20;
+            // 
+            // lbRodadaJogador2
+            // 
+            this.lbRodadaJogador2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbRodadaJogador2.AutoSize = true;
+            this.lbRodadaJogador2.Location = new System.Drawing.Point(854, 59);
+            this.lbRodadaJogador2.Name = "lbRodadaJogador2";
+            this.lbRodadaJogador2.Size = new System.Drawing.Size(0, 13);
+            this.lbRodadaJogador2.TabIndex = 22;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(854, 46);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(45, 13);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Rodada";
+            // 
+            // btnReiniciar
+            // 
+            this.btnReiniciar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnReiniciar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnReiniciar.Location = new System.Drawing.Point(513, 12);
+            this.btnReiniciar.Name = "btnReiniciar";
+            this.btnReiniciar.Size = new System.Drawing.Size(60, 23);
+            this.btnReiniciar.TabIndex = 23;
+            this.btnReiniciar.Text = "Reiniciar";
+            this.btnReiniciar.UseVisualStyleBackColor = true;
+            this.btnReiniciar.Click += new System.EventHandler(this.btnReiniciar_Click);
+            // 
             // jogadorBindingSource
             // 
             this.jogadorBindingSource.DataSource = typeof(JogoRPG.Jogador);
@@ -218,6 +268,11 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1089, 385);
+            this.Controls.Add(this.btnReiniciar);
+            this.Controls.Add(this.lbRodadaJogador2);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblRodadaJogador1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbAcoesJogador2);
             this.Controls.Add(this.label3);
@@ -263,6 +318,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbAcoesJogador2;
         private System.Windows.Forms.BindingSource jogadorBindingSource;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblRodadaJogador1;
+        private System.Windows.Forms.Label lbRodadaJogador2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnReiniciar;
     }
 }
 

@@ -78,10 +78,5 @@ namespace JogoRPG
             }
             
         }
-
-        public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -12,8 +12,12 @@ namespace JogoRPG
         private Guerreiro guerreiro { get; set; }
         private Paladino paladino { get; set; }
         private Mago mago { get; set; }
-
-        private static int contRodada = 1;
+        private static int contRodada = 0;
+        private int rodadaEspecial = 0;
+        private List<Personagem> personagens;
+        public int vida;
+        public Personagem personagemAtacante;
+        public Personagem personagemAtacado;
 
         public List<Personagem> Personagens
         {
@@ -23,10 +27,14 @@ namespace JogoRPG
             }
         }
 
-        private List<Personagem> personagens;
-        public int vida;
-        public Personagem personagemAtacante;
-        public Personagem personagemAtacado;
+        public int RodadaEspecial
+        {
+            get
+            {
+                return rodadaEspecial;
+            }
+        }
+
         public Jogador()
         {
             criaPersonagens();
@@ -59,12 +67,28 @@ namespace JogoRPG
 
         public void ataque(Personagem atacante, Personagem atacado, string ataque)
         {
-            atacante.ataque(ataque, atacado);
+            if(this.RodadaEspecial == 10) atacante.ataqueEspecial(atacado);
+            else atacante.ataque(ataque, atacado);
             somaRodada();
         }
+        public string caminhoatacante(out string atributos, Personagem atacante)
+        {
+            atributos = atacante.atributosPersonagem();
+            return atacante.caminhoImagem;
+        }
+        public string caminhoatacado(out string atributos, Personagem atacado)
+        {
+            atributos = atacado.atributosPersonagem();
+            return atacado.caminhoImagem;
+        }
+
         public static void somaRodada()
         {
             contRodada++;
+        }
+        public void somaRodadaEspecial()
+        {
+            this.rodadaEspecial++;
         }
         public static bool rodadaAtual()
         {
@@ -76,16 +100,6 @@ namespace JogoRPG
             {
                 return false;
             }   
-        }
-        public string caminhoatacante(out string atributos,Personagem atacante)
-        {
-            atributos = atacante.atributosPersonagem();
-            return atacante.caminhoImagem;
-        }
-        public string caminhoatacado(out string atributos, Personagem atacado)
-        {
-            atributos = atacado.atributosPersonagem();
-            return atacado.caminhoImagem;
         }
     }
 }

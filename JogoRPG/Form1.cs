@@ -58,15 +58,16 @@ namespace JogoRPG
         private void btnAtaque_Click(object sender, EventArgs e)
         {
            try
-           {
+            {
                 selecionaPersonagem1();
-                    jogadores[0].ataque(jogadores[0].personagemAtacante, jogadores[1].personagemAtacado, ataque(cbAcoesJogador1.SelectedItem.ToString()));
-                    jogador0caminhoFoto = jogadores[0].caminhoatacante(out atributos2, jogadores[0].personagemAtacante);
-                    jogador1caminhoFoto = jogadores[1].caminhoatacado(out atributos1, jogadores[1].personagemAtacado);
-                    imagemAtacante(jogador0caminhoFoto, atributos1);
-                    imagemAtacado(jogador1caminhoFoto, atributos2);
-           }
-           catch (NullReferenceException)
+                jogadores[0].ataque(jogadores[0].personagemAtacante, jogadores[1].personagemAtacado, ataque(cbAcoesJogador1.SelectedItem.ToString()));
+                jogador0caminhoFoto = jogadores[0].caminhoatacante(out atributos2, jogadores[0].personagemAtacante);
+                jogador1caminhoFoto = jogadores[1].caminhoatacado(out atributos1, jogadores[1].personagemAtacado);
+                imagemAtacante(jogador0caminhoFoto, atributos1);
+                imagemAtacado(jogador1caminhoFoto, atributos2);
+                jogador0Rodada();
+            }
+            catch (NullReferenceException)
            {
                 throw new NullReferenceException(excecao);
            }
@@ -75,16 +76,24 @@ namespace JogoRPG
                 habilitaCb();
            }
         }
+
+        private void jogador0Rodada()
+        {
+            jogadores[0].somaRodadaEspecial();
+            lblRodadaJogador1.Text = jogadores[0].RodadaEspecial.ToString();
+        }
+
         private void btnJogador2Atk_Click(object sender, EventArgs e)
         {
             try
             {
                 selecionaPersonagem2();
-                    jogadores[1].ataque(jogadores[1].personagemAtacante, jogadores[0].personagemAtacado, ataque(cbAcoesJogador2.SelectedItem.ToString()));
-                    jogador0caminhoFoto = jogadores[1].caminhoatacante(out atributos2, jogadores[1].personagemAtacante);
-                    jogador1caminhoFoto = jogadores[0].caminhoatacado(out atributos1, jogadores[0].personagemAtacado);
-                    imagemAtacante(jogador1caminhoFoto, atributos2);
-                    imagemAtacado(jogador0caminhoFoto, atributos1);
+                jogadores[1].ataque(jogadores[1].personagemAtacante, jogadores[0].personagemAtacado, ataque(cbAcoesJogador2.SelectedItem.ToString()));
+                jogador0caminhoFoto = jogadores[1].caminhoatacante(out atributos2, jogadores[1].personagemAtacante);
+                jogador1caminhoFoto = jogadores[0].caminhoatacado(out atributos1, jogadores[0].personagemAtacado);
+                imagemAtacante(jogador1caminhoFoto, atributos2);
+                imagemAtacado(jogador0caminhoFoto, atributos1);
+                jogador1Rodada();
             }
             catch (NullReferenceException)
             {
@@ -95,6 +104,13 @@ namespace JogoRPG
                 habilitaCb();
             }
         }
+
+        private void jogador1Rodada()
+        {
+            jogadores[1].somaRodadaEspecial();
+            lbRodadaJogador2.Text = jogadores[1].RodadaEspecial.ToString();
+        }
+
         private void selecionaPersonagem1()
         {
             foreach (Personagem a in jogadores[0].Personagens)
@@ -136,14 +152,6 @@ namespace JogoRPG
             }
             cbPersonagemJogador2.Enabled = false;
         }
-        private void imagemAtacado(string caminho, string v)
-        {
-            imagem = Image.FromFile(caminho);
-            imagemPersonagem2.Image = imagem;
-            imagemPersonagem2.Width = imagem.Width;
-            imagemPersonagem2.Height = imagem.Height;
-            lbAtributos.Text = v;
-        }
         private void cbJogador1_SelectedIndexChanged(object sender, EventArgs e)
         {
             selecionaPersonagem1();
@@ -181,16 +189,21 @@ namespace JogoRPG
 
         private void cbAcoesJogador1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnJogador1Atk.Enabled = false;
+            if(btnJogador1Atk.Enabled == true)
+            {
+                btnJogador1Atk.Enabled = false;
+                Jogador.somaRodada();
+            }
             btnJogador2Atk.Enabled = true;
-            Jogador.somaRodada();
         }
-
         private void cbAcoesJogador2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (btnJogador2Atk.Enabled == true)
+            {
+                btnJogador2Atk.Enabled = false;
+                Jogador.somaRodada();
+            }
             btnJogador1Atk.Enabled = true;
-            btnJogador2Atk.Enabled = false;
-            Jogador.somaRodada();
         }
         private void imagemAtacante(string caminho,string atributosPersonagem)
         {
@@ -200,9 +213,21 @@ namespace JogoRPG
             imagemPersonagem1.Height = imagem.Height;
             lbAtributos2.Text = atributosPersonagem;
         }
+        private void imagemAtacado(string caminho, string atributosPersonagem)
+        {
+            imagem = Image.FromFile(caminho);
+            imagemPersonagem2.Image = imagem;
+            imagemPersonagem2.Width = imagem.Width;
+            imagemPersonagem2.Height = imagem.Height;
+            lbAtributos.Text = atributosPersonagem;
+        }
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+        private void btnReiniciar_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

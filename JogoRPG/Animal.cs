@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace JogoRPG
 {
@@ -41,7 +40,6 @@ namespace JogoRPG
             this.acoes = new List<string>();
         }
 
-
         private void incluiListas()
         {
             this.acoes.Add(garraLetal.ToString());
@@ -69,18 +67,6 @@ namespace JogoRPG
                 personagemdefesa.defesa(garraLetal.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa), personagemdefesa);
                 somaManaRodada(ref this.Mana);
             }
-        }
-
-        public override void defesa(int danoAtaque, Personagem personagemDefesa)
-        {
-            personagemDefesa.defesas.Sort();
-            int defesa = defesas[0];
-            personagemDefesa.Vida -= danoAtaque - defesa / 25;
-        }
-
-        public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)
-        {
-            throw new NotImplementedException();
         }
     }
 }

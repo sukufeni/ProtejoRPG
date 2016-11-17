@@ -70,10 +70,5 @@ namespace JogoRPG
                 somaManaRodada(ref this.Mana);
             }
         }
-
-        public override int ataqueEspecial(ref int vidaAtacado, string tipoAtaque)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

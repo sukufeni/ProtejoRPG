@@ -71,17 +71,17 @@ namespace JogoRPG
         {
             try
             {
-                if (danoAtaque <= personagemDefesa.Vida)
+                if (danoAtaque > 0)
                 {
-                    if (danoAtaque > 0)
+                    if (danoAtaque <= personagemDefesa.Vida)
                     {
                         int defesa = r.Next(personagemDefesa.defesas.Count);
                         personagemDefesa.Vida -= danoAtaque - defesa;
                     }
-                }
-                else
-                {
-                    personagemDefesa.Vida = 0;
+                    else
+                    {
+                        personagemDefesa.Vida = 0;
+                    }
                 }
             }
             catch (NullReferenceException e)
@@ -89,6 +89,25 @@ namespace JogoRPG
                 throw new NullReferenceException("erro ao defender!", e);
             }
         }
-        public abstract int ataqueEspecial(ref int vidaAtacado, string tipoAtaque);
+
+        public void ataqueEspecial(Personagem atacado)
+        {
+            if (this.Vida > 0)
+            {
+                if (this.forcaMagica*forcaFisica <= atacado.Vida)
+                {
+                    atacado.defesa(this.forcaFisica * forcaMagica, atacado);
+                }
+                else
+                {
+                    atacado.defesa(atacado.Vida, atacado);
+                }
+            }
+            else
+            {
+                throw new Exception("erro ao fazer o ataque especial!");
+            }
+                
+        }
     }
 }
