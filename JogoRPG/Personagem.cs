@@ -19,7 +19,6 @@ namespace JogoRPG
         protected Magia magia;
         protected Arma arma;
         internal string caminhoImagem;
-        protected bool ataqueespecial;
         internal List<int> defesas;
         protected List<Magia> Curas;
         protected List<string> acoes;

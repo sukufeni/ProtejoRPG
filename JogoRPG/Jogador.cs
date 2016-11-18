@@ -67,7 +67,7 @@ namespace JogoRPG
 
         public void ataque(Personagem atacante, Personagem atacado, string ataque)
         {
-            if(this.RodadaEspecial == 10) atacante.ataqueEspecial(atacado);
+            if ((int)this.rodadaEspecial / (int)10 >= 1)atacante.ataqueEspecial(atacado);
             else atacante.ataque(ataque, atacado);
             somaRodada();
         }
