@@ -49,7 +49,7 @@ namespace JogoRPG
             return "vida:" + Vida + " - " + "mana: " + Mana + "\n" + "força-fisica: " + forcaFisica + " - " + "força-magica: " + forcaMagica + "\n" + "resistencia-armadura: " + resistArmadura + " - " + "resistencia-magica: " + resistMagica;
         }
         public abstract void constroiMagia();
-        public abstract void constroiArmas();// mudar para inicializar a arma mais fraca
+        public abstract void constroiArmas();
         public abstract void ataque(string tipoAtaque, Personagem personagemDefesa);
 
         Arma IEmetodos.constroiArmas()
@@ -63,8 +63,7 @@ namespace JogoRPG
 
         public void somaManaRodada(ref int mana)
         {
-            if(mana+10<=getManaMaxma())mana += 10;
-            else mana += getManaMaxma() - mana;
+            if (mana + 10 <= getManaMaxma()) mana += 10;
         }
         public virtual void defesa(int danoAtaque, Personagem personagemDefesa)
         {
@@ -75,7 +74,7 @@ namespace JogoRPG
                     if (danoAtaque <= personagemDefesa.Vida)
                     {
                         int defesa = r.Next(personagemDefesa.defesas.Count);
-                        personagemDefesa.Vida -= danoAtaque - defesa;
+                        personagemDefesa.Vida -= danoAtaque + defesa;
                     }
                     else
                     {
