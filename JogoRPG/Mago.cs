@@ -30,7 +30,8 @@ namespace JogoRPG
         {
             this.defesas = new List<int>();
             this.Curas = new List<Magia>();
-            this.acoes = new List<string>();
+            this.armas = new List<Arma>();
+            this.magias = new List<Magia>();
         }
 
         public string CaminhoImagem
@@ -53,14 +54,14 @@ namespace JogoRPG
 
         private void incluiLista()
         {
-            acoes.Add(cajado.ToString());
-            acoes.Add(sagrado.ToString());
-            acoes.Add(bio.ToString());
-            acoes.Add(pocaVida.ToString());
-            acoes.Add(magiacura.ToString());
-            acoes.Add(gelada.ToString());
-            acoes.Add(intoxicacao.ToString());
-            acoes.Add(tempestade.ToString());
+            armas.Add(cajado);
+            armas.Add(sagrado);
+            magias.Add(bio);
+            magias.Add(pocaVida);
+            magias.Add(magiacura);
+            magias.Add(gelada);
+            magias.Add(intoxicacao);
+            magias.Add(tempestade);
             defesas.Add(resistArmadura);
             defesas.Add(resistMagica);
             defesas.Add(agilidade);

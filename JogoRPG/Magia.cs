@@ -20,10 +20,24 @@
                     return atacado.Vida;
                 }
             }
-            else
+            return 0;
+        }
+        public virtual int executaMagia1(Magia magia, int vidaAtacante, ref int mana, int forcaMagica, Personagem atacado)
+        {
+            if (vidaAtacante > 0)
             {
-                throw new System.Exception("atacante morto!");
+                if (mana >= gastoMana && atacado.Vida >= (valorMagia + forcaMagica))
+                {
+                    mana -= gastoMana;
+                    return valorMagia + forcaMagica;
+                }
+                else
+                {
+                    mana = 0;
+                    return atacado.Vida;
+                }
             }
+            return 0;
         }
         public virtual int executaCura(int vidaAtacante,ref int mana, int forcaMagica, Personagem vida,int vidaMaxima)
         {
@@ -32,10 +46,7 @@
                 mana -= gastoMana;
                 return valorMagia + forcaMagica;
             }
-            else
-            {
-                throw new System.Exception("magia irá exceder a vida maxima!");
-            }
+            return 0;
         }
     }
 }

@@ -21,16 +21,25 @@ namespace JogoRPG
         internal string caminhoImagem;
         internal List<int> defesas;
         protected List<Magia> Curas;
-        protected List<string> acoes;
+        protected List<Arma> armas;
+        protected List<Magia> magias;
         Random r = new Random();
 
-        public List<string> Acoes
+        public List<Arma> Armas
         {
             get
             {
-                return acoes;
+                return armas;
             }
         }
+        public List<Magia> Magias
+        {
+            get
+            {
+                return magias;
+            }
+        }
+
         public void setVidaManaMaxima()
         {
             this.vidaMaxima = Vida;
@@ -60,7 +69,6 @@ namespace JogoRPG
         {
             throw new NotImplementedException();
         }
-
         public void somaManaRodada(ref int mana)
         {
             if (mana + 10 <= getManaMaxma()) mana += 10;
@@ -74,7 +82,8 @@ namespace JogoRPG
                     if (danoAtaque <= personagemDefesa.Vida)
                     {
                         int defesa = r.Next(personagemDefesa.defesas.Count);
-                        personagemDefesa.Vida -= danoAtaque + defesa;
+                        if (personagemDefesa.Vida - danoAtaque - defesa > personagemDefesa.Vida) personagemDefesa.Vida = 0;
+                        else personagemDefesa.Vida -= danoAtaque - defesa;
                     }
                     else
                     {
@@ -87,7 +96,6 @@ namespace JogoRPG
                 throw new NullReferenceException("erro ao defender!", e);
             }
         }
-
         public void ataqueEspecial(Personagem atacado)
         {
             if (this.Vida > 0)
@@ -106,6 +114,30 @@ namespace JogoRPG
                 throw new Exception("erro ao fazer o ataque especial!");
             }
                 
+        }
+
+        protected Magia encontraMagiaAtaque(string magia)
+        {
+            foreach (Magia a in Magias)
+            {
+                if (a.ToString().Substring(8)== magia)
+                {
+                    return a;
+                }
+            }
+            return this.magias[0];
+        }
+        protected Arma encontraArmaAtaque(string arma)
+        {
+            foreach (Arma a in this.Armas)
+            {
+                if (a.ToString() == arma)
+                {
+                    return a;
+                }
+
+            }
+            return this.Armas[0];
         }
     }
 }

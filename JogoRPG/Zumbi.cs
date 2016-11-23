@@ -25,7 +25,8 @@ namespace JogoRPG
         private void criaLista()
         {
             this.defesas = new List<int>();
-            this.acoes = new List<string>();
+            this.armas = new List<Arma>();
+            this.magias = new List<Magia>();
         }
 
         public string CaminhoImagem
@@ -47,10 +48,10 @@ namespace JogoRPG
         }
         private void incluiLista()
         {
-            this.acoes.Add(cajado.ToString());
-            this.acoes.Add(garraLetal.ToString());
-            this.acoes.Add(porrete.ToString());
-            this.acoes.Add(intoxicacao.ToString());
+            this.armas.Add(cajado);
+            this.armas.Add(garraLetal);
+            this.armas.Add(porrete);
+            this.magias.Add(intoxicacao);
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
             this.defesas.Add(resistArmadura);

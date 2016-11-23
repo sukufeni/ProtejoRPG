@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace JogoRPG
 {
@@ -37,13 +38,14 @@ namespace JogoRPG
         private void criaListas()
         {
             this.defesas = new List<int>();
-            this.acoes = new List<string>();
+            this.armas = new List<Arma>();
+            this.magias = new List<Magia>();
         }
 
         private void incluiListas()
         {
-            this.acoes.Add(garraLetal.ToString());
-            this.acoes.Add(bio.ToString());
+            this.Armas.Add(garraLetal);
+            this.magias.Add(bio);
             this.defesas.Add(agilidade);
             this.defesas.Add(resistMagica);
             this.defesas.Add(resistArmadura);
@@ -60,13 +62,18 @@ namespace JogoRPG
         }
         
         public override void ataque(string tipoAtaque, Personagem personagemdefesa)
-        {   
-            if (tipoAtaque == "Bio")personagemdefesa.defesa(bio.executaMagia(this.Vida, ref this.Mana, this.forcaMagica,personagemdefesa), personagemdefesa);
+        {
+            if (encontraMagiaAtaque(tipoAtaque) != null)
+            {
+                Magia ataque = encontraMagiaAtaque(tipoAtaque); // como manipular?
+                personagemdefesa.defesa(magia.executaMagia1(ataque, this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa), personagemdefesa);
+            }
             else
             {
+                Arma ataque = encontraArmaAtaque(tipoAtaque);
                 personagemdefesa.defesa(garraLetal.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa), personagemdefesa);
-                somaManaRodada(ref this.Mana);
             }
+            somaManaRodada(ref this.Mana);
         }
     }
 }

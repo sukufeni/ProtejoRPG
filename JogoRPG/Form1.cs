@@ -25,6 +25,7 @@ namespace JogoRPG
             jogadores.Add(jogador2);
             criaComboBox();
             habilitaCb();
+
         }
         private void criaComboBox()
         {
@@ -45,13 +46,17 @@ namespace JogoRPG
         {
             if (!Jogador.rodadaAtual())
             {
-                btnJogador1Atk.Enabled = true;
-                btnJogador2Atk.Enabled = false;
+                btnJogador1AtkArma.Enabled = true;
+                btnJogador1AtkMagia.Enabled = true;
+                btnJogador2AtkArma.Enabled = false;
+                btnJogador2AtkMagia.Enabled = false;
             }
             else
             {
-                btnJogador1Atk.Enabled = false;
-                btnJogador2Atk.Enabled = true;
+                btnJogador1AtkArma.Enabled = false;
+                btnJogador1AtkMagia.Enabled = false;
+                btnJogador2AtkMagia.Enabled = true;
+                btnJogador2AtkArma.Enabled = true;
             }
         }
 
@@ -59,10 +64,9 @@ namespace JogoRPG
         {
            try
             {
-                selecionaPersonagem1();
-                jogadores[0].ataque(jogadores[0].personagemAtacante, jogadores[1].personagemAtacado, ataque(cbAcoesJogador1.SelectedItem.ToString()));
+                jogadores[0].ataque(jogadores[1].personagemAtacante, ataque(cbArmasJogador1.SelectedItem.ToString()));
                 jogador0caminhoFoto = jogadores[0].caminhoatacante(out atributos2, jogadores[0].personagemAtacante);
-                jogador1caminhoFoto = jogadores[1].caminhoatacado(out atributos1, jogadores[1].personagemAtacado);
+                jogador1caminhoFoto = jogadores[1].caminhoatacante(out atributos1, jogadores[1].personagemAtacante);
                 imagemAtacante(jogador0caminhoFoto, atributos1);
                 imagemAtacado(jogador1caminhoFoto, atributos2);
                 jogador0Rodada();
@@ -76,21 +80,13 @@ namespace JogoRPG
                 habilitaCb();
            }
         }
-
-        private void jogador0Rodada()
-        {
-            jogadores[0].somaRodadaEspecial();
-            lblRodadaJogador1.Text = jogadores[0].RodadaEspecial.ToString();
-        }
-
         private void btnJogador2Atk_Click(object sender, EventArgs e)
         {
             try
             {
-                selecionaPersonagem2();
-                jogadores[1].ataque(jogadores[1].personagemAtacante, jogadores[0].personagemAtacado, ataque(cbAcoesJogador2.SelectedItem.ToString()));
+                jogadores[1].ataque(jogadores[0].personagemAtacante, ataque(cbArmasJogador2.SelectedItem.ToString()));
                 jogador0caminhoFoto = jogadores[1].caminhoatacante(out atributos2, jogadores[1].personagemAtacante);
-                jogador1caminhoFoto = jogadores[0].caminhoatacado(out atributos1, jogadores[0].personagemAtacado);
+                jogador1caminhoFoto = jogadores[0].caminhoatacado(out atributos1, jogadores[0].personagemAtacante);
                 imagemAtacante(jogador1caminhoFoto, atributos2);
                 imagemAtacado(jogador0caminhoFoto, atributos1);
                 jogador1Rodada();
@@ -104,6 +100,53 @@ namespace JogoRPG
                 habilitaCb();
             }
         }
+        private void btnJogador1AtkMagia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                jogadores[0].ataque(jogadores[1].personagemAtacante, cbMagiasJogador1.SelectedItem.ToString());
+                jogador0caminhoFoto = jogadores[0].caminhoatacante(out atributos2, jogadores[0].personagemAtacante);
+                jogador1caminhoFoto = jogadores[1].caminhoatacante(out atributos1, jogadores[1].personagemAtacante);
+                imagemAtacante(jogador0caminhoFoto, atributos1);
+                imagemAtacado(jogador1caminhoFoto, atributos2);
+                jogador0Rodada();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException(excecao);
+            }
+            finally
+            {
+                habilitaCb();
+            }
+        }
+        private void btnJogador2AtkMagia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                jogadores[1].ataque(jogadores[0].personagemAtacante, ataque(cbMagiasJogador2.SelectedItem.ToString()));
+                jogador0caminhoFoto = jogadores[1].caminhoatacante(out atributos2, jogadores[1].personagemAtacante);
+                jogador1caminhoFoto = jogadores[0].caminhoatacado(out atributos1, jogadores[0].personagemAtacante);
+                imagemAtacante(jogador1caminhoFoto, atributos2);
+                imagemAtacado(jogador0caminhoFoto, atributos1);
+                jogador1Rodada();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException(excecao);
+            }
+            finally
+            {
+                habilitaCb();
+            }
+        }
+        private void jogador0Rodada()
+        {
+            jogadores[0].somaRodadaEspecial();
+            lblRodadaJogador1.Text = jogadores[0].RodadaEspecial.ToString();
+        }
+
+       
 
         private void jogador1Rodada()
         {
@@ -162,14 +205,32 @@ namespace JogoRPG
 
         private void adicionaListaAcoesJogador1()
         {
-            cbAcoesJogador1.Items.Clear();
-            for (int x = 0; x < jogadores[0].personagemAtacante.Acoes.Count; x++)
+            cbArmasJogador1.Items.Clear();
+            for (int x = 0; x < jogadores[0].personagemAtacante.Armas.Count; x++)
             {
-                cbAcoesJogador1.Items.Add(jogadores[0].personagemAtacante.Acoes[x]);
+                cbArmasJogador1.Items.Add(jogadores[0].personagemAtacante.Armas[x].ToString().Substring(8));
             }
-            cbAcoesJogador1.SelectedIndex = 0;
+            for (int x = 0; x < jogadores[0].personagemAtacante.Magias.Count; x++)
+            {
+                cbMagiasJogador1.Items.Add(jogadores[0].personagemAtacante.Magias[x].ToString().Substring(8));
+            }
+            cbArmasJogador1.SelectedIndex = 0;
+            cbMagiasJogador1.SelectedIndex = 0;
         }
-
+        private void adicionaAcoesListaJogador2()
+        {
+            cbArmasJogador2.Items.Clear();
+            for (int x = 0; x < jogadores[1].personagemAtacante.Armas.Count; x++)
+            {
+                cbArmasJogador2.Items.Add(jogadores[1].personagemAtacante.Armas[x].ToString().Substring(8));
+            }
+            for (int x = 0; x < jogadores[1].personagemAtacante.Magias.Count; x++)
+            {
+                cbMagiasJogador2.Items.Add(jogadores[1].personagemAtacante.Magias[x].ToString().Substring(8));
+            }
+            cbArmasJogador2.SelectedIndex = 0;
+            cbMagiasJogador2.SelectedIndex = 0;
+        }
         private void cbJogador2_SelectedIndexChanged(object sender, EventArgs e)
         {
             selecionaPersonagem2();
@@ -177,33 +238,27 @@ namespace JogoRPG
             habilitaCb();
         }
 
-        private void adicionaAcoesListaJogador2()
-        {
-            cbAcoesJogador2.Items.Clear();
-            for (int x = 0; x < jogadores[1].personagemAtacante.Acoes.Count; x++)
-            {
-                cbAcoesJogador2.Items.Add(jogadores[1].personagemAtacante.Acoes[x]);
-            }
-            cbAcoesJogador2.SelectedIndex = 0;
-        }
-
         private void cbAcoesJogador1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(btnJogador1Atk.Enabled == true)
+            if(btnJogador1AtkArma.Enabled == true||btnJogador1AtkMagia.Enabled == true)
             {
-                btnJogador1Atk.Enabled = false;
+                btnJogador1AtkArma.Enabled = false;
+                btnJogador1AtkMagia.Enabled = false;
                 Jogador.somaRodada();
             }
-            btnJogador2Atk.Enabled = true;
+            btnJogador2AtkArma.Enabled = true;
+            btnJogador2AtkMagia.Enabled = true;
         }
         private void cbAcoesJogador2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (btnJogador2Atk.Enabled == true)
+            if (btnJogador2AtkArma.Enabled == true|| btnJogador2AtkMagia.Enabled == true)
             {
-                btnJogador2Atk.Enabled = false;
+                btnJogador2AtkArma.Enabled = false;
+                btnJogador2AtkMagia.Enabled = false;
                 Jogador.somaRodada();
             }
-            btnJogador1Atk.Enabled = true;
+            btnJogador1AtkArma.Enabled = true;
+            btnJogador1AtkMagia.Enabled = true;
         }
         private void imagemAtacante(string caminho,string atributosPersonagem)
         {
@@ -213,6 +268,7 @@ namespace JogoRPG
             imagemPersonagem1.Height = imagem.Height;
             lbAtributos2.Text = atributosPersonagem;
         }
+
         private void imagemAtacado(string caminho, string atributosPersonagem)
         {
             imagem = Image.FromFile(caminho);
