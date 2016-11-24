@@ -86,33 +86,10 @@ namespace JogoRPG
         {
                 this.Vida += e.executaCura(this.Vida,ref this.Mana, this.forcaMagica,this,getVidaMaxima());
         }
-
-        public override void ataque(string tipoAtaque, Personagem personagemDefesa)
+        public override void ataque(int ataque, Personagem personagemDefesa, object tipoAtaque)
         {
-            switch (tipoAtaque)
-            {
-                case "Bio":
-                    personagemDefesa.defesa(bio.executaMagia(this.Vida, ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
-                    break;
-                case "FlamaGelada":personagemDefesa.defesa(gelada.executaMagia(this.Vida, ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
-                    break;
-                case "Intoxicacao":
-                    personagemDefesa.defesa(intoxicacao.executaMagia(this.Vida, ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
-                    break;
-                case "Tempestade ":personagemDefesa.defesa(tempestade.executaMagia(this.Vida, ref this.Mana, this.forcaMagica,personagemDefesa),personagemDefesa);
-                    break;
-                case "TridenteSagrado":
-                    personagemDefesa.defesa(sagrado.executaAtaque(this.Vida, this.forcaFisica, personagemDefesa),personagemDefesa); somaManaRodada(ref this.Mana);
-                    break;
-                case "Cajado":
-                    personagemDefesa.defesa(cajado.executaAtaque(this.Vida, this.forcaFisica, personagemDefesa),personagemDefesa); somaManaRodada(ref this.Mana);
-                    break;
-                case "Cura":cura(magiacura);
-                    break;
-                case "PocaoVida":
-                    cura(magiacura);
-                    break;
-            }
+            if (ataque == 1 || ataque == 2) cura(Magias[ataque]);
+            else base.ataque(ataque, personagemDefesa, tipoAtaque);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace JogoRPG
         protected int resistMagica;
         protected int agilidade;
         protected int fraqueza;
-        protected Magia magia;
+        protected Magia tipoAtaque;
         protected Arma arma;
         internal string caminhoImagem;
         internal List<int> defesas;
@@ -59,7 +59,12 @@ namespace JogoRPG
         }
         public abstract void constroiMagia();
         public abstract void constroiArmas();
-        public abstract void ataque(string tipoAtaque, Personagem personagemDefesa);
+        public virtual void ataque(int ataque, Personagem personagemDefesa, object tipoAtaque)
+        {
+            if (tipoAtaque.ToString() == "magia") personagemDefesa.defesa(magias[ataque].executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemDefesa), personagemDefesa);
+            else personagemDefesa.defesa(Armas[ataque].executaAtaque(this.Vida, this.forcaFisica, personagemDefesa), personagemDefesa);
+            somaManaRodada(ref this.Mana);
+        }
 
         Arma IEmetodos.constroiArmas()
         {
@@ -114,30 +119,6 @@ namespace JogoRPG
                 throw new Exception("erro ao fazer o ataque especial!");
             }
                 
-        }
-
-        protected Magia encontraMagiaAtaque(string magia)
-        {
-            foreach (Magia a in Magias)
-            {
-                if (a.ToString().Substring(8)== magia)
-                {
-                    return a;
-                }
-            }
-            return this.magias[0];
-        }
-        protected Arma encontraArmaAtaque(string arma)
-        {
-            foreach (Arma a in this.Armas)
-            {
-                if (a.ToString() == arma)
-                {
-                    return a;
-                }
-
-            }
-            return this.Armas[0];
         }
     }
 }

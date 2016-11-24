@@ -73,27 +73,14 @@ namespace JogoRPG
             tridenteSagrado = new TridenteSagrado();
             besta = new Besta();
         }
-        public override void ataque(string tipoAtaque, Personagem personagemdefesa)
-        {
-            switch (tipoAtaque)
-            {
-                case "FlamaGelada":personagemdefesa.defesa(flamaGelada.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
-                    break;
-                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
-                    break;
-                case "TridenteSagrado":personagemdefesa.defesa(tridenteSagrado.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
-                    break;
-                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
-                    break;
-                case "PocaoVida":
-                    cura(pocaoVida);
-                    break;
-            }
-        }
-
         public void cura(Magia e)
         {
             this.Vida += e.executaCura(this.Vida, ref this.Mana, this.forcaMagica, this, getVidaMaxima());
+        }
+        public override void ataque(int ataque, Personagem personagemDefesa, object tipoAtaque)
+        {
+            if (ataque == 2) cura(Magias[ataque]);
+            else base.ataque(ataque, personagemDefesa, tipoAtaque);
         }
     }
 }

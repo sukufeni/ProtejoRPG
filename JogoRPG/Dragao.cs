@@ -62,14 +62,5 @@ namespace JogoRPG
         {
             garraLetal = new GarraLetal();
         }
-        public override void ataque(string tipoAtaque, Personagem personagemdefesa)
-        {
-            if (tipoAtaque == "HalitoFogo") personagemdefesa.defesa(halitoFogo.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa), personagemdefesa);
-            else
-            {
-                personagemdefesa.defesa(garraLetal.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa), personagemdefesa);
-                somaManaRodada(ref this.Mana);
-            }
-        }
     }
 }

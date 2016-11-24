@@ -64,11 +64,10 @@ namespace JogoRPG
             Personagens.Add(paladino);
             Personagens.Add(mago);
         }
-
-        public void ataque(Personagem atacado, string ataque)
+        public void ataque(Personagem atacado, int ataque,object tipoAtaque)
         {
-            if ((int)this.rodadaEspecial / (int)10 >= 1)this.personagemAtacante.ataqueEspecial(atacado);
-            else this.personagemAtacante.ataque(ataque, atacado);
+            if ((int)this.rodadaEspecial / (int)10 >= 1) this.personagemAtacante.ataqueEspecial(atacado);
+            else this.personagemAtacante.ataque(ataque, atacado,tipoAtaque);
             somaRodada();
         }
         public string caminhoatacante(out string atributos, Personagem atacante)

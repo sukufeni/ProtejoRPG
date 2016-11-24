@@ -1,4 +1,6 @@
-﻿namespace JogoRPG
+﻿using System;
+
+namespace JogoRPG
 {
     public abstract class Magia
     {
@@ -7,23 +9,6 @@
         public virtual int executaMagia(int vidaAtacante,ref int mana, int forcaMagica, Personagem atacado)
         {
 
-            if (vidaAtacante > 0)
-            {
-                if (mana >= gastoMana && atacado.Vida >= (valorMagia + forcaMagica))
-                {
-                    mana -= gastoMana;
-                    return valorMagia + forcaMagica;
-                }
-                else
-                {
-                    mana = 0;
-                    return atacado.Vida;
-                }
-            }
-            return 0;
-        }
-        public virtual int executaMagia1(Magia magia, int vidaAtacante, ref int mana, int forcaMagica, Personagem atacado)
-        {
             if (vidaAtacante > 0)
             {
                 if (mana >= gastoMana && atacado.Vida >= (valorMagia + forcaMagica))

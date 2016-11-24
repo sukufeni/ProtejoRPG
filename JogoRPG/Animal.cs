@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace JogoRPG
@@ -59,21 +60,6 @@ namespace JogoRPG
         public override void constroiArmas()
         {
             garraLetal = new GarraLetal();
-        }
-        
-        public override void ataque(string tipoAtaque, Personagem personagemdefesa)
-        {
-            if (encontraMagiaAtaque(tipoAtaque) != null)
-            {
-                Magia ataque = encontraMagiaAtaque(tipoAtaque); // como manipular?
-                personagemdefesa.defesa(magia.executaMagia1(ataque, this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa), personagemdefesa);
-            }
-            else
-            {
-                Arma ataque = encontraArmaAtaque(tipoAtaque);
-                personagemdefesa.defesa(garraLetal.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa), personagemdefesa);
-            }
-            somaManaRodada(ref this.Mana);
         }
     }
 }

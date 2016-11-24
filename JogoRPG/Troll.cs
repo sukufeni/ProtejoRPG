@@ -62,22 +62,8 @@ namespace JogoRPG
 
         public override void constroiArmas()
         {
-             porrete = new Porrete();
-             cajado = new Cajado();
-        }
-
-        public override void ataque(string tipoAtaque, Personagem personagemdefesa)
-        {
-            switch (tipoAtaque)
-            {
-                case "Intoxicacao":personagemdefesa.defesa(intoxicacao.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
-                    break;
-                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
-                    break;
-                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
-                    break;
-            }
-            
-        }
+            porrete = new Porrete();
+            cajado = new Cajado();
+        }        
     }
 }

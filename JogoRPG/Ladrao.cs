@@ -73,23 +73,5 @@ namespace JogoRPG
             besta = new Besta();
             esfera = new EsferaAtaque();
         }
-        public override void ataque(string tipoAtaque, Personagem personagemdefesa) // nao esta polimorfico!!!
-        {
-            switch (tipoAtaque)
-            {
-                case "Intoxicacao":personagemdefesa.defesa(intoxicacao.executaMagia(this.Vida, ref this.Mana, this.forcaMagica, personagemdefesa),personagemdefesa);
-                    break;
-                case "Tempestade":personagemdefesa.defesa(tempestade.executaMagia(this.Vida, ref this.Mana,this.forcaMagica, personagemdefesa),personagemdefesa);
-                    break;
-                case "Porrete":personagemdefesa.defesa(porrete.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
-                    break;
-                case "Cajado":personagemdefesa.defesa(cajado.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
-                    break;
-                case "Besta":personagemdefesa.defesa(besta.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
-                    break;
-                case "EsferaAtaque":personagemdefesa.defesa(esfera.executaAtaque(this.Vida, this.forcaFisica, personagemdefesa),personagemdefesa); somaManaRodada(ref this.Mana);
-                    break;
-            }
-        }
     }
 }
